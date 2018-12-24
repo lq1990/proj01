@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+/home/lq/Documents/myJava/.metadata/.plugins/org.eclipse.jdt.core
+3070904283.index
+317515707.index
+1409916607.index

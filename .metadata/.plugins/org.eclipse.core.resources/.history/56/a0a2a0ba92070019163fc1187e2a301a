@@ -1,0 +1,7 @@
+
+public class PieChart
+{
+	public void display() {
+		System.out.println("piechart display");
+	}
+}

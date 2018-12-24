@@ -1,0 +1,13 @@
+import java.util.List;
+import java.util.ArrayList;
+
+public class CustomerChart
+{
+	
+	
+	public void displayChart() {
+		for( Customer customer:findCustomer()) {
+			System.out.println("customer: "+customer.name);
+		}
+	}
+}

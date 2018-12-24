@@ -1,0 +1,11 @@
+import java.util.List;
+
+public class CustomerChart
+{
+	protected List<Customer> findCustomer( {
+		// find db
+		List<Customer> ret = new ArrayList<Customer> ();
+		ret.add(new Customer());
+		return ret;
+	})
+}

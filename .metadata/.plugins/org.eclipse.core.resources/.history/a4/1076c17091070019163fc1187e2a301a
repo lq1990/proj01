@@ -1,0 +1,14 @@
+
+public class CharDisplayManager
+{
+	public void display(String name) {
+		switch(name) {
+		case "pie":
+			new PieChart().display();
+			break;
+		case "bar":
+			new BarChart().display();
+			break;
+		}
+	}
+}

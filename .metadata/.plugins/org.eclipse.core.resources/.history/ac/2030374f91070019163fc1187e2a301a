@@ -1,0 +1,7 @@
+
+public class CharDisplayManager
+{
+	public void display() {
+		
+	}
+}
