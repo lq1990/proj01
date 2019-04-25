@@ -21,7 +21,6 @@ public class TestOperator1 {
 		System.out.println(-9 % 5);
 		System.out.println(-9 % -5);
 		System.out.println(9 % -5);
-		 */
 		
 		int a = 3;
 		int b = a++;
@@ -30,7 +29,16 @@ public class TestOperator1 {
 		int aa = 3;
 		int bb = ++aa;
 		System.out.println("aa: "+aa+"\nbb: "+bb);
+		*/
 		
+		int a = 3;
+		int b = 4;
+		a += b;
+		System.out.println("a: "+a + ", b: "+b);
+		
+		a = 3;
+		a *= b+3; // a = a * (b+3)
+		System.out.println(a);
 
 	}
 }
