@@ -1,0 +1,33 @@
+package cn.bjsxt.oop.abstractClass;
+
+public abstract class Animal {
+	String str;
+	public abstract void run();
+	public void breath() {
+		System.out.println("∫ÙŒ¸");
+		this.run();
+	}
+	
+	public Animal() {
+		
+	}
+	
+}
+
+class Cat extends Animal {
+	
+	@Override
+	public void run() {
+		System.out.println("√®≤Ω–°≈‹");
+	}
+	
+}
+
+class Dog extends Animal {
+
+	@Override
+	public void run() {
+		System.out.println("π∑≈‹");
+	}
+	
+}
