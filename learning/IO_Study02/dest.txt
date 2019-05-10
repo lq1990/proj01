@@ -1,6 +1,3 @@
-IO is so easy1
-IO is so easy2
-IO is so easy2
-IO is so easy3
-IO is so easy4IO is so easy5IO is so easy66
-IO is so easy69
+this is msg: for you...
+学习this is msg: for you...
+学习啊

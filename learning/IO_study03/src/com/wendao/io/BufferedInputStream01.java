@@ -1,5 +1,6 @@
-package com.wendaochupin.io;
+package com.wendao.io;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * add buf stream
  * steps:
  * 1. src
  * 2. stream
@@ -16,18 +18,20 @@ import java.io.InputStream;
  * @author china
  *
  */
-public class IOTest3 {
+public class BufferedInputStream01 {
 	public static void main(String[] args) {
 		// 1. create src
 		File src = new File("abc.txt");
 		
 		// 2. select stream
 		InputStream is = null;
+		BufferedInputStream bis = null; // it is new
+		
 		try {
-			is = new FileInputStream(src);
+			is = new BufferedInputStream( new FileInputStream(src));
 			
 			// 3. read or write
-			byte[] flush = new byte[1024*10]; // 3 byte each time, size of buffer
+			byte[] flush = new byte[1024]; // 3 byte each time, size of buffer
 			int len = -1; // length of bytes that is returned
 			while((len = is.read(flush)) != -1 ) {
 				// byte[] to char (decode)
@@ -45,7 +49,7 @@ public class IOTest3 {
 				if (null != is) { // avoid voidPointer Exception
 					is.close();
 				}
-					
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

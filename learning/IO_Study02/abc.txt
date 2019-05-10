@@ -1,1 +1,1 @@
-I am going to SXT.
+from src, I am going to SXT学习abc.
