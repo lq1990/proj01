@@ -24,7 +24,7 @@ public class DataTest {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(baos));
 		/*节点流，都可以加 buffered*/
-		
+
 		// 操作
 		dos.writeUTF("编码");
 		dos.writeInt(18);
