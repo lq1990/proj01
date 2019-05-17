@@ -1,6 +1,7 @@
 package com.wendao.thread;
 
 import java.util.concurrent.atomic.AtomicLong;
+import java.lang.Thread;
 
 /**
  * 使用 CompareAndSwap 的 原子操作，代替 synchronized。 CAS效率高，硬件级别的操作。
