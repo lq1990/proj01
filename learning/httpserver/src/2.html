@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			第一个表单
+		</title>
+	</head>
+	<body>
+		<pre>
+			pre中的文本会保留空格、行。
+			get: 数据量小，安全性不高，可在url中看到. as default
+			post：量大，相对安全。post的name信息，不显示在query中。
+			action: 请求的服务器路径
+			
+			id: 编号，用户的浏览器区分唯一性，js中使用多
+			name：名称，后端区分唯一性，用于获取值。当前学习java后端，因此使用此。
+				只要提交数据给后台，必须存在name
+		</pre>
+		<form method="get" action="http://localhost:9999/index.html">
+			user: <input type="text"  name="uname" id="uname"/>
+			password:<input type="password" name="pwd" id="pwd"/>
+			兴趣:<input type="checkbox" name="fav" value="0"/>篮球
+			<input type="checkbox" name="fav" value="1"/>足球
+			<input type="checkbox" name="fav" value="2"/>排球
+			<input type="submit" value="login">
+		</form>
+	</body>
+</html>
