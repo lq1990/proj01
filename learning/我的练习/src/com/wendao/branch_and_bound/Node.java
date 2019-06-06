@@ -1,4 +1,4 @@
-package com.wendao.algorithm;
+package com.wendao.branch_and_bound;
 
 /**
  * 	节点：

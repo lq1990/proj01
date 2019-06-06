@@ -9,22 +9,22 @@ import java.io.InputStream;
 /**
  * self define a ClassLoader
  * 
- * load a .class in a dir
+ * load a .class that is already encrypted
  * 
  * @author china
  *
  */
-public class FileSystemClassLoader extends ClassLoader {
+public class EnDecryptClassLoader extends ClassLoader {
 	// com.xxx.test.User --> d:/xxx/ com/xxx/test/User.class
 	private String rootDir;
 
-	public FileSystemClassLoader() {
+	public EnDecryptClassLoader() {
 	}
 
 	/**
 	 * @param rootDir
 	 */
-	public FileSystemClassLoader(String rootDir) {
+	public EnDecryptClassLoader(String rootDir) {
 		super();
 		this.rootDir = rootDir;
 	}
@@ -34,7 +34,7 @@ public class FileSystemClassLoader extends ClassLoader {
 		Class<?> c = findLoadedClass(name);
 		// 1. check if loaded
 		if (null != c) {
-			System.out.println("已被加载，直接返回");
+//			System.out.println("已被加载，直接返回");
 			return c;
 		} else {
 			ClassLoader parent = this.getParent(); // app classloader
@@ -48,7 +48,7 @@ public class FileSystemClassLoader extends ClassLoader {
 				return c;
 			} else {
 				// parent cannot load, so do it by myself
-				byte[] classData = getClassData(name); // get byte array
+				byte[] classData = getClassData(name); // get byte array that is decrypted
 				if (classData == null) {
 					throw new ClassNotFoundException();
 				} else {
@@ -61,6 +61,8 @@ public class FileSystemClassLoader extends ClassLoader {
 
 	/**
 	 * 
+	 * get data of a .class and decrypt simultaneously
+	 * 
 	 * @param classname eg. com.xxx.test.User --> d:/xxx/ com/xxx/test/User.class
 	 * @return
 	 */
@@ -69,17 +71,15 @@ public class FileSystemClassLoader extends ClassLoader {
 		String path = rootDir + "/" + classname.replace('.', '/') + ".class";
 		// 2. InputStream/OutputStream to convert .class into byte[]
 		InputStream is = null;
-		ByteArrayOutputStream baos = null;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
 			is = new FileInputStream(path);
-			baos = new ByteArrayOutputStream();
-			// 3. read
-			byte[] buffer = new byte[1024];
-			int len = 0;
-			while ((len = is.read(buffer)) != -1) {
-				baos.write(buffer, 0, len);
+			
+			int tmp = -1;
+			while((tmp = is.read()) != -1) {
+				baos.write(tmp^0xff); // decrypt
 			}
-			baos.flush();
+			
 			return baos.toByteArray();
 
 		} catch (FileNotFoundException e) {

@@ -5,32 +5,34 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 /**
+ * Net ClassLoader
  * self define a ClassLoader
  * 
- * load a .class in a dir
+ * load a .class from a given URL
  * 
  * @author china
  *
  */
-public class FileSystemClassLoader extends ClassLoader {
-	// com.xxx.test.User --> d:/xxx/ com/xxx/test/User.class
-	private String rootDir;
+public class NetClassLoader extends ClassLoader {
+	// com.xxx.test.User --> www.sxt.cn/xxx/   com/xxx/test/User.class
+	private String rootUrl;
 
-	public FileSystemClassLoader() {
+	public NetClassLoader() {
 	}
 
 	/**
-	 * @param rootDir
+	 * @param rootUrl
 	 */
-	public FileSystemClassLoader(String rootDir) {
+	public NetClassLoader(String rootUrl) {
 		super();
-		this.rootDir = rootDir;
+		this.rootUrl = rootUrl;
 	}
 
 	@Override
-	public Class<?> findClass(String name) throws ClassNotFoundException {
+	public Class<?> loadClass(String name) throws ClassNotFoundException {
 		Class<?> c = findLoadedClass(name);
 		// 1. check if loaded
 		if (null != c) {
@@ -66,12 +68,13 @@ public class FileSystemClassLoader extends ClassLoader {
 	 */
 	private byte[] getClassData(String classname) {
 		// 1. src
-		String path = rootDir + "/" + classname.replace('.', '/') + ".class";
+		String path = rootUrl + "/" + classname.replace('.', '/') + ".class";
 		// 2. InputStream/OutputStream to convert .class into byte[]
 		InputStream is = null;
 		ByteArrayOutputStream baos = null;
 		try {
-			is = new FileInputStream(path);
+			URL url = new URL(path);
+			is = url.openStream(); // different from fileSystem ==============================
 			baos = new ByteArrayOutputStream();
 			// 3. read
 			byte[] buffer = new byte[1024];

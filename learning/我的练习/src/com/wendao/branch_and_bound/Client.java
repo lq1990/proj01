@@ -1,4 +1,4 @@
-package com.wendao.algorithm;
+package com.wendao.branch_and_bound;
 
 import java.util.ArrayList;
 import java.util.Arrays;
