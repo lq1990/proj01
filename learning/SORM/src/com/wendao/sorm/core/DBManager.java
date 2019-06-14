@@ -51,6 +51,25 @@ public class DBManager {
 		}
 	}
 	
+	/**
+	 * 返回conf，共外部使用
+	 * @return
+	 */
+	public static Configuration getConf() {
+		return conf;
+	}
+	
+	public static void close(AutoCloseable...autoCloseables) {
+		for (AutoCloseable autoCloseable : autoCloseables) {
+			if (null != autoCloseable) {
+				try {
+					autoCloseable.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 	
 	
 }

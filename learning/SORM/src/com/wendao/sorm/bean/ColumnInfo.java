@@ -67,5 +67,18 @@ public class ColumnInfo {
 	public ColumnInfo() {
 	}
 	
-	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

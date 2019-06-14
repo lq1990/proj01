@@ -20,18 +20,24 @@ public interface Query {
 	public int executeDML(String sql, Object[] params);
 	
 	/**
-	 * 	将一个对象存储到db中
+	 * 	将一个对象存储到db中。
+	 * 	把不为null的属性往db中存储。
+	 * 	若数字为null，则为0。
+	 * 
 	 * @param obj 要存储的对象
 	 */
 	public void insert(Object obj);
 	
 	/**
+	 * <pre>
 	 * 	删除clz类对应的表中的记录（指定主键值id的记录）
+	 * 	注：按照主键来删除。
+	 * </pre>
 	 * @param clz 跟表对应的类的Class对象
 	 * @param id 主键的值
 	 * @return
 	 */
-	public void delete(Class clz, int id); // sql: delete from User where id=1;
+	public void delete(Class clz, Object id); // sql: delete from User where id=1;
 	
 	/**
 	 * 	删除对象在db中对应的记录（对象所在的类对应到表，对象的主键的值对应到记录）

@@ -8,6 +8,8 @@ import java.util.Map;
 
 import com.wendao.sorm.bean.ColumnInfo;
 import com.wendao.sorm.bean.TableInfo;
+import com.wendao.sorm.utils.JavaFileUtils;
+import com.wendao.sorm.utils.StringUtils;
 
 /**
  * 注：此个类，直接粘贴使用
@@ -35,6 +37,8 @@ public class TableContext {
 	}
 
 	static {
+		// 项目启动时，调用static init
+		
 		try {
 			// 初始化获得表的信息
 			Connection conn = DBManager.getConn();
@@ -68,8 +72,49 @@ public class TableContext {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		// 根据表结构，更新 配置的po包下面的java类。
+		updateJavaPOFile();
+		
+		// 完善 poClassTableMap。即加载po包下面的所有的类，便于重用。
+		loadPOTables();
+		
 	}
 
+	/**
+	 * 根据表结构，更新 配置的po包下面的java类。
+	 */
+	public static void updateJavaPOFile() {
+		TypeConvertor convertor = new MySqlTypeConvertor();
+		Map<String, TableInfo> mp = TableContext.tables;
+		
+		for (TableInfo ti : mp.values()) {
+			// db表 转成 com.wendao.po.Clz 
+			JavaFileUtils.createjavaPOFile(ti, convertor);
+		}
+	}
+	
+	/**
+	 * 加载po包下面的类
+	 */
+	public static void loadPOTables() {
+		
+		for(TableInfo ti : tables.values()) {
+			try {
+				
+				Class<?> c = Class.forName(DBManager.getConf().getPoPackage()
+						+"."+
+						StringUtils.firstChar2UpperCase(ti.getTname()));
+				poClassTableMap.put(c, ti);
+				
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+		}		
+		
+		
+	}
 	
 	public static void main(String[] args) {
 		Map<String, TableInfo> tables = TableContext.tables;
@@ -77,6 +122,22 @@ public class TableContext {
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
