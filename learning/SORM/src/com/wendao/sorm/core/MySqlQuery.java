@@ -16,8 +16,9 @@ import com.wendao.sorm.bean.TableInfo;
 import com.wendao.sorm.utils.JDBCUtils;
 import com.wendao.sorm.utils.ReflectUtils;
 import com.wendao.sorm.utils.StringUtils;
+import com.wendao.vo.EmpVO;
 
-public class MySqlQuery implements Query {
+public class MySqlQuery extends Query {
 	
 	public static void testDML() {
 		Emp e = new Emp();
@@ -33,7 +34,8 @@ public class MySqlQuery implements Query {
 //		new MySqlQuery().update(e, new String[] {"empname", "age", "salary"});
 	}
 	
-	public static void main(String[] args) {
+	@SuppressWarnings("unchecked")
+	public static void testQueryRows() {
 		List<Emp> list = new MySqlQuery().queryRows("select id,empname,age from emp where age>? and salary>?", 
 				Emp.class, 
 				new Object[] {
@@ -44,188 +46,73 @@ public class MySqlQuery implements Query {
 			System.out.println(emp.getEmpname());
 		}
 		
+		System.out.println();
 		
-	}
-
-	@Override
-	public int executeDML(String sql, Object[] params) {
-		// DML: CRUD
-		Connection conn = DBManager.getConn();
-		int count = 0;
-		PreparedStatement ps = null;
+		// 复杂查询时，可以封装 vo  javabean对象，将查询的结果保存。sql语句中使用的别名和vo对象中属性对应。
+		String sql2 = 
+				"select e.id,e.empname,salary+bonus 'income',"+
+				"e.age,d.dname 'deptName',d.address 'deptAddr'"+ 
+			" from emp e join dept d on e.deptId=d.id";
+		List<EmpVO> list2 = new MySqlQuery().queryRows(sql2,
+				EmpVO.class, 
+				null);
 		
-		try {
-			ps = conn.prepareStatement(sql);
-			
-			// 给sql设参
-			JDBCUtils.handleParams(ps, params);
-			
-			System.out.println(ps);
-			
-			count = ps.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBManager.close(ps, conn);
+		for (EmpVO e : list2) {
+			System.out.println(e.getEmpname()+"\t "+e.getIncome()+"\t "+e.getDeptName());
 		}
-		
-		return count;
-	}
-
-	@Override
-	public void insert(Object obj) {
-		// obj --> table.
-		// insert into tname (f1,f2,f3) values (?,?,?);
-		Class c = obj.getClass();
-		List<Object> params = new ArrayList<Object>(); // 存储sql的参数对象
-		TableInfo tableInfo = TableContext.poClassTableMap.get(c);
-		StringBuilder sql = new StringBuilder("insert into "+
-				tableInfo.getTname()+ 
-				" (");
-		
-		Field[] fs = c.getDeclaredFields();
-		int countNotNullField = 0; // 记录不是null的
-		for (Field f : fs) {
-			String fieldName = f.getName();
-			Object fieldValue = ReflectUtils.invokeGet(fieldName, obj);
-			if (null != fieldValue) {
-				countNotNullField++;
-				sql.append(fieldName+",");
-				params.add(fieldValue);
-			}
-		}
-		
-		sql.setCharAt(sql.length()-1, ')');
-		sql.append(" values (");
-		for(int i=0; i<countNotNullField; i++) {
-			sql.append("?,");
-		}
-		sql.setCharAt(sql.length()-1, ')'); // 至此，sql语句合成完毕
-		
-		executeDML(sql.toString(), params.toArray());
-		
-	}
-
-	@Override
-	public void delete(Class clz, Object id) {
-		// Emp.class,2 --> delete from emp where id=2;
-		
-		// 问题：通过Class对象找TableInfo。但table名多变，不容易实现。所以借助 TableContext->poClassTableMap 实现映射
-		TableInfo tableInfo = TableContext.poClassTableMap.get(clz);
-		// 主键
-		ColumnInfo onlyPriKey = tableInfo.getOnlyPriKey();
-		
-		String sql = "delete from "+tableInfo.getTname()+" where "+onlyPriKey.getName() + "=? ";
-		
-		executeDML(sql, new Object[] {id}); 
-		// 第二个参：Object数组，为静态初始化方式
-		
 	}
 	
-
-	@Override
-	public int delete(Object obj) {
-		Class<?> c = obj.getClass();
-		TableInfo tableInfo = TableContext.poClassTableMap.get(c);
-		ColumnInfo onlyPriKey = tableInfo.getOnlyPriKey(); // 获得主键
+	
+	public static void main(String[] args) {
+		Number obj = new MySqlQuery().queryNumber("select count(*) from emp where salary>=?", new Object[] {
+				10000
+		});
+		System.out.println(obj.intValue());
 		
-		// 通过反射机制，调用属性对应的get set方法
-		Object priKeyValue = ReflectUtils.invokeGet(onlyPriKey.getName(), obj);
-		delete(c, priKeyValue);
+//		testQueryRows();
 		
-		return 0;
-	}
-
-	@Override
-	public int update(Object obj, String[] fieldNames) {
-		// obj{"uname","pwd"} --> update tname set uname=?,pwd=? where id=?
-		Class c = obj.getClass();
-		List<Object> params = new ArrayList<Object>();
-		TableInfo tableInfo = TableContext.poClassTableMap.get(c);
-		ColumnInfo priKey = tableInfo.getOnlyPriKey();
-		StringBuilder sql = new StringBuilder("update "+tableInfo.getTname()+" set ");
 		
-		for(String fname:fieldNames) {
-			Object fvalue = ReflectUtils.invokeGet(fname, obj);
-			params.add(fvalue);
-			sql.append(fname+"=?,");
-		}
 		
-		sql.setCharAt(sql.length()-1, ' ');
-		sql.append(" where ");
-		sql.append(priKey.getName()+"=? "); // sql finished
 		
-		params.add(ReflectUtils.invokeGet(priKey.getName(), obj)); // priKey
-		
-		return executeDML(sql.toString(), params.toArray());
 		
 	}
 
 	@Override
-	public List queryRows(String sql, Class clz, Object[] params) {
-		Connection conn = DBManager.getConn();
-		List list = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		
-		try {
-			ps = conn.prepareStatement(sql);
-			
-			// 给sql设参
-			JDBCUtils.handleParams(ps, params);
-			System.out.println(ps);
-			rs = ps.executeQuery();
-			
-			ResultSetMetaData metaData = rs.getMetaData();
-			// 多行
-			while(rs.next()) {
-				if (list==null) {
-					list = new ArrayList();
-				}
-				
-				Object rowObj = clz.newInstance(); // 调用无参构造器
-				
-				// 多列 select username,pwd,age from user where id>2 and id<10;
-				for(int i=0; i<metaData.getColumnCount(); i++) {
-					String columnName = metaData.getColumnLabel(i+1); // username
-					Object columnValue = rs.getObject(i+1);
-					
-					// 调用rowObj对象的setUsername(String uname) 方法，将columnValue 设置进去
-					ReflectUtils.invokeSet(rowObj, columnName, columnValue);
-				}
-				
-				list.add(rowObj);
-			}
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBManager.close(rs, ps, conn);
-		}
-		
-		return list;
-	}
-
-	@Override
-	public Object queryUniqueRow(String sql, Class clz, Object[] params) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object queryValue(String sql, Object[] params) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Number queryNumber(String sql, Object[] params) {
-		// TODO Auto-generated method stub
+	public Object queryPaginate(int pageNum, int size) {
 		return null;
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

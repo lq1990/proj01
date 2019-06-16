@@ -1,4 +1,4 @@
-package com.wendao.po;
+package com.wendao.test.po;
 
 import java.sql.*;
 import java.util.*;
@@ -6,6 +6,8 @@ import java.util.*;
 public class Emp {
 
 	private String empname;
+	private java.sql.Date birthday;
+	private Double bonus;
 	private Integer deptId;
 	private Integer id;
 	private Double salary;
@@ -14,6 +16,12 @@ public class Emp {
 
 	public String getEmpname () {
 		return empname; 
+	}
+	public java.sql.Date getBirthday () {
+		return birthday; 
+	}
+	public Double getBonus () {
+		return bonus; 
 	}
 	public Integer getDeptId () {
 		return deptId; 
@@ -31,6 +39,12 @@ public class Emp {
 
 	public void setEmpname (String empname) {
 		this.empname = empname;
+	}
+	public void setBirthday (java.sql.Date birthday) {
+		this.birthday = birthday;
+	}
+	public void setBonus (Double bonus) {
+		this.bonus = bonus;
 	}
 	public void setDeptId (Integer deptId) {
 		this.deptId = deptId;
