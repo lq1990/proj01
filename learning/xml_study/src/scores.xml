@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 声明内部DTD
+	(#PCDATA) 表示：name标签不能再有子标签，只能是纯文本。
+ -->
+<!DOCTYPE scores [
+	<!ELEMENT scores (student+) >
+	<!ELEMENT student (name, course, score)>
+	<!ATTLIST student id CDATA #REQUIRED>
+	<!ELEMENT name (#PCDATA) >
+	<!ELEMENT course (#PCDATA) >
+	<!ELEMENT score (#PCDATA) >
+]>
+<scores>
+<!-- scores -->
+	<student id="1">
+		<name>王同</name>
+		<course>java</course>
+		<score>89</score>
+	</student>
+	<student id="2">
+		<name>李佳</name>
+		<course>sql</course>
+		<score>58</score>
+	</student>
+	<student id="3">
+		<name>anna</name>
+		<course>oracle</course>
+		<score>40</score>
+	</student>
+</scores>

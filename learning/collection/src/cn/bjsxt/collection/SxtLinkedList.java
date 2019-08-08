@@ -15,6 +15,7 @@ public class SxtLinkedList {
 		Node n = new Node();
 
 		if (first == null) {
+			// 开始add时，first为null
 			n.prev = null;
 			n.obj = obj;
 			n.next = null;

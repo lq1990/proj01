@@ -1,0 +1,54 @@
+0    [main] DEBUG com.wendao.log.TestLog  - i am debug
+1    [main] INFO  com.wendao.log.TestLog  - i am info
+1    [main] WARN  com.wendao.log.TestLog  - i am warn
+1    [main] ERROR com.wendao.log.TestLog  - i am error
+1    [main] FATAL com.wendao.log.TestLog  - i am fatal
+0    [main] DEBUG com.wendao.log.TestLog  - 我是 debug
+1    [main] INFO  com.wendao.log.TestLog  - i am info
+1    [main] WARN  com.wendao.log.TestLog  - i am warn
+1    [main] ERROR com.wendao.log.TestLog  - i am error
+1    [main] FATAL com.wendao.log.TestLog  - i am fatal
+0    [main] INFO  com.wendao.log.TestLog  - i am info
+0    [main] WARN  com.wendao.log.TestLog  - i am warn
+0    [main] ERROR com.wendao.log.TestLog  - i am error
+1    [main] FATAL com.wendao.log.TestLog  - i am fatal
+0    [main] INFO  com.wendao.log.TestLog  - i am info
+0    [main] WARN  com.wendao.log.TestLog  - i am warn
+0    [main] ERROR com.wendao.log.TestLog  - i am error
+0    [main] FATAL com.wendao.log.TestLog  - i am fatal
+0    [main] INFO  com.wendao.log.TestLog  - i am info
+16   [main] WARN  com.wendao.log.TestLog  - i am warn
+16   [main] ERROR com.wendao.log.TestLog  - i am error
+16   [main] FATAL com.wendao.log.TestLog  - i am fatal
+0    [main] INFO  com.wendao.log.TestLog  - i am info
+0    [main] WARN  com.wendao.log.TestLog  - i am warn
+1    [main] ERROR com.wendao.log.TestLog  - i am error
+1    [main] FATAL com.wendao.log.TestLog  - i am fatal
+0    [main] INFO  com.wendao.log.TestLog  - i am info
+2    [main] WARN  com.wendao.log.TestLog  - i am warn
+2    [main] ERROR com.wendao.log.TestLog  - i am error
+2    [main] FATAL com.wendao.log.TestLog  - i am fatal
+0    [main] INFO  com.wendao.log.TestLog  - i am info
+2    [main] WARN  com.wendao.log.TestLog  - i am warn
+2    [main] ERROR com.wendao.log.TestLog  - i am error
+2    [main] FATAL com.wendao.log.TestLog  - i am fatal
+0    [main] INFO  com.wendao.log.TestLog  - i am info
+6    [main] WARN  com.wendao.log.TestLog  - i am warn
+6    [main] ERROR com.wendao.log.TestLog  - i am error
+6    [main] FATAL com.wendao.log.TestLog  - i am fatal
+0    [main] INFO  com.wendao.log.TestLog  - i am info
+2    [main] WARN  com.wendao.log.TestLog  - i am warn
+2    [main] ERROR com.wendao.log.TestLog  - i am error
+2    [main] FATAL com.wendao.log.TestLog  - i am fatal
+0    [main] INFO  2019/08/02 18:34:35 com.wendao.log.TestLog.main(TestLog.java:14) - i am info
+2    [main] WARN  2019/08/02 18:34:35 com.wendao.log.TestLog.main(TestLog.java:15) - i am warn
+2    [main] ERROR 2019/08/02 18:34:35 com.wendao.log.TestLog.main(TestLog.java:16) - i am error
+2    [main] FATAL 2019/08/02 18:34:35 com.wendao.log.TestLog.main(TestLog.java:17) - i am fatal
+1    [main] INFO  2019/08/02 18:41:45 com.wendao.log.TestLog.main(TestLog.java:14) - i am info
+2    [main] WARN  2019/08/02 18:41:45 com.wendao.log.TestLog.main(TestLog.java:15) - i am warn
+2    [main] ERROR 2019/08/02 18:41:45 com.wendao.log.TestLog.main(TestLog.java:16) - i am error
+2    [main] FATAL 2019/08/02 18:41:45 com.wendao.log.TestLog.main(TestLog.java:17) - i am fatal
+0    [main] INFO  2019/08/02 20:45:30 com.wendao.log.TestLog.main(TestLog.java:14) - i am info
+1    [main] WARN  2019/08/02 20:45:30 com.wendao.log.TestLog.main(TestLog.java:15) - i am warn
+2    [main] ERROR 2019/08/02 20:45:30 com.wendao.log.TestLog.main(TestLog.java:16) - i am error
+2    [main] FATAL 2019/08/02 20:45:30 com.wendao.log.TestLog.main(TestLog.java:17) - i am fatal

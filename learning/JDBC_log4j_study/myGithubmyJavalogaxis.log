@@ -1,0 +1,4 @@
+0    [main] INFO  2019/08/02 18:41:19 com.wendao.log.TestLog.main(TestLog.java:14) - i am info
+1    [main] WARN  2019/08/02 18:41:19 com.wendao.log.TestLog.main(TestLog.java:15) - i am warn
+1    [main] ERROR 2019/08/02 18:41:19 com.wendao.log.TestLog.main(TestLog.java:16) - i am error
+1    [main] FATAL 2019/08/02 18:41:19 com.wendao.log.TestLog.main(TestLog.java:17) - i am fatal
