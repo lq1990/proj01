@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>09 html 框架标签学习</title>
+		<meta charset="utf8" />
+		<meta name="keywords" content="html, iframe" />
+	</head>
+
+	<!--
+		使用frameset，首先要取出body。
+			rows：按照行进行切分页面
+			cols：按照列进行切分页面
+			子标签：
+				frame：进行切分区域的占位，一个frame可以单独加载网络资源或本地。
+					src：资源路径
+				可以给frame设置name，这样，a标签可以用target进行跳转
+	-->
+	
+	<frameset rows="10%, *, 10%">
+		<frame src="frameset/top.html" />
+		
+		<frameset cols="10%, *">
+			<frame src="frameset/left.html" />
+			<frame src="frameset/right.html" name="_right"/>
+		</frameset>
+		
+		<frame src="frameset/bottom.html" />
+	</frameset>
+</html>
