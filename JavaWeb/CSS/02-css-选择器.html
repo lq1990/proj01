@@ -1,0 +1,157 @@
+<html>
+	<head>
+		<title>02 css 选择器</title>
+		<meta charset="utf8"/>
+	
+		<style type="text/css">
+		
+			/*
+				优先级别(高到低)：
+					id选择器
+					标签选择器
+					类选择器
+					全部选择器
+					
+				CSS的使用过程：
+					1. 声明css代码域
+					2. 使用选择器选择要添加样式的标签
+						根据需求来。
+							使用 * 选择器给整个页面添加基础样式
+							使用 类选择器 给不同的标签添加基础样式
+							使用 标签选择器给某类标签添加基础样式
+							使用 id、属性选择器、style属性声明方式给某个标签添加个性化样式。
+					3. 书写样式单
+						边框设置
+							border: solid 1px;
+						字体设置
+							font-size: 10px;
+							font-family: "sans-serif", "serif", "monospace";
+							font-weight: bold;
+						字体颜色设置
+							color: red;
+						背景色设置
+							background-color: red;
+						背景图片设置
+							background-image: url();
+							background-repeat: no-repeat; 图片不重复
+							background-size: cover; 图片平铺整个页面
+						高和宽
+						浮动
+							float: left | right;
+						行高
+							line-height: 10px;
+			*/
+		
+			/* 全部选择 选择器 */
+			* {
+					
+				}
+			
+		  /* 标签选择器 */
+			table {
+				width: 300px;
+				height: 200px;
+				border: solid 1px;
+				background-color: #44d39f;
+			}
+			
+			/* id选择器 */
+			#t1 {
+				background-color: #ff9645;
+			}
+			
+			/* 类选择器 */
+			.common {
+				color: red;
+			}
+			
+			/* 组合选择器，样式作用在多项 */
+			table, .common {
+				background-color: blue;
+			}
+			
+			/* 子标签选择器，有层级关系 */
+			#ul1 li a {
+				color: red;
+			}
+			
+			/* 属性选择器,   标签名[属性名=值] */
+			input[type=text] {
+				background-color: red;
+			}
+			
+			
+		</style>
+	</head>
+
+	<body>
+		<h3>css的选择器学习</h3>
+		<hr/>
+		<hr/>
+		
+		<table id="t1" class="common">
+			<tr>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		
+		<b class="common">css学习</b>
+		
+		<hr/>
+		<ul id="ul1">
+			<li><a href="">123</a></li>
+			<li><a href="">345</a></li>
+			<li><a href="">567</a></li>
+		</ul>
+		
+		<ul>
+			<li><a href="">123</a></li>
+			<li><a href="">345</a></li>
+			<li><a href="">567</a></li>
+		</ul>
+		
+		<a href="">abc</a>
+		
+		<hr/>
+		<input type="text" name="" id="" /> <br/>
+		<input type="password" name="" id="" />
+		
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+	
+	</body>
+</html>
+
+

@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<title>05 css div</title>
+		<meta charset="utf8"/>
+		
+		<style type="text/css">
+			img {
+				width: 49.53%; /*相对于父标签的大小占比*/
+				height: 45%;
+			} 
+			
+			#showdiv {
+				border: solid 10px; /*border 是往外扩的，不影响content*/
+				width: 40%;
+				height: 300px;
+				margin: 0px auto;
+				margin-bottom: 10px;
+				padding: 20px;
+			}
+			
+			#div01 {
+				border: dashed 3px orange;
+				width: 40%;
+				height: 200px;
+				margin: auto;
+				
+			}
+			
+		</style>
+	</head>
+
+	<!--
+		css 的盒子模型学习：
+			div标签：
+				块级标签，主要用来进行网页布局的，会将其中的子元素内容作为一个独立的整体存在
+				特点：默认宽度是页面的宽度，但可以设置。
+					高度默认没有，但可以设置。
+					
+			
+			盒子模型：
+				margin：外边距，元素之间的间隔
+					居中设置： margin: 0px auto; 上下间隔0px，水平居中。
+				border：边框
+					作用：设置元素的边框的大小
+						可以单独设置上下左右
+						border 是往外扩的，不影响content
+				padding：内边距
+					设置内容与border之间
+					内边距不改变content大小，
+					可以单独设置上下左右
+				内容区域：
+					改变内容区域的大小
+					设置宽和高科改变内容区域大小
+				
+				注意：
+					border、padding都会向外扩展，而都不改变content大小。
+					能改变content大小的是设置content本身的宽高.
+	
+	-->
+	
+	<body>
+		<div id="showdiv">
+			<img src="img/village01.jpg" alt="" />
+			<img src="img/village02.jpg" alt="" />
+		</div>
+		
+		<div id="div01">
+			
+		</div>
+	
+	</body>
+</html>
+
+
+
+
+
+
+

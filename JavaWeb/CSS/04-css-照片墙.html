@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<title>04 css 照片墙</title>
+		<meta charset="utf8"/>
+		
+		<style type="text/css">
+			body {
+				text-align: center;
+				background-color: gray;
+			}
+		
+			img {
+				margin: 15px;
+				width: 242.7px;
+				height: 150px;
+				border: solid 10px white;
+				transform: rotate(-10deg); /*负数为 逆时针转*/
+			}
+			
+			/*使用伪类给标签添加样式*/
+			img:hover {
+				transform: rotate(0deg) scale(1.5); /*设置旋转角度 和 缩放比例*/
+				z-index: 1; /*优先级别*/
+				transition: 1s; /*过渡动画时间*/
+				
+			}
+			
+		</style>
+	</head>
+	
+	<body>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<img src="img/village01.jpg" alt = "" />
+		<img src="img/village02.jpg" alt = "" />
+		<img src="img/village03.jpg" alt = "" />
+		<img src="img/village04.jpg" alt = "" />
+		<br/>
+		<img src="img/village05.jpg" alt = "" />
+		<img src="img/village06.jpg" alt = "" />
+		<img src="img/village07.jpg" alt = "" />
+		<img src="img/village08.jpg" alt = "" />
+	</body>
+</html>
+
+
+

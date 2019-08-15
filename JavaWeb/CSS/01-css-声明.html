@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>01 css 声明</title>
+		<meta charset="utf8" />
+		
+		<!--
+			CSS:
+				1. 在head标签中使用 style标签声明，=》行内样式
+				2. 在标签上使用style属性进行声明，会直接作用在此标签，=》内嵌样式
+				3. 在head中使用link标签，引入外部声明好的css. =》外部引用样式
+					link好处：一处声明，多处使用
+					
+				当同时存在多个样式时，基于自上而下原则和就近原则，行内样式最后会覆盖其它处样式
+				
+		-->
+		
+		
+		
+		<style type="text/css">
+			hr {
+				width: 50%;
+				height: 20px;
+				background-color: red;
+			}
+			
+		</style>
+		
+		<link rel="stylesheet" type="text/css" href="css/my.css" />
+		
+	</head>
+	<body>
+		<h3>css 声明</h3>
+		<hr style="background-color: blue;" />
+		<hr/>
+		
+		
+	</body>
+</html>
+
+
+
+
+
+
+

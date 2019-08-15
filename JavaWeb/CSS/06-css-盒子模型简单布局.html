@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>06 css 盒子模型简单布局</title>
+		<meta charset="utf8"/>
+		
+		<style type="text/css">
+			/*
+				div 默认是块级元素，自动换行。
+				div嵌套div，内层的div可用float：left 实现inline的效果。
+			*/
+		
+			/*div的基础样式*/
+			div {
+				width: 300px;
+				height: 300px;
+				
+			}
+			
+			/*对特定的元素进行特制*/
+			#header,  #footer{
+				width: 650px;
+				height: 300px;
+				margin: auto;
+				margin-top: 20px;
+				
+			}
+			
+			#div01 {
+				border: solid 1px red;
+				float: left;
+				margin-right: 20px;
+			}
+			#div02 {
+				border: solid 1px green;
+				float: left;
+			}
+			#div03 {
+				border: solid 1px blue;
+				float: left;
+				margin-right: 20px;
+			}
+			#div04 {
+				border: solid 1px black;
+				float: left;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div id="header">
+			<div id="div01">
+				i am div01
+			</div>
+			<div id="div02">
+				i am div02
+			</div>
+		</div>
+		
+		<div id="footer">
+			<div id="div03">
+				i am div03
+			</div>
+			<div id="div04">
+				i am div04
+			</div>
+			
+		</div>
+		
+		
+	</body>
+</html>
+
+
+
+
+
+
