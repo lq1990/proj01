@@ -1,0 +1,99 @@
+<html>
+	<head>
+		<title>js function</title>
+		<meta charset="utf8" />
+		
+		<!--
+			函数，
+				作用：功能代码块的封装，减少代码块的冗余
+				1. 函数声明
+					1.1 funtion fn(arg1, arg2) {body}
+					1.2 var fn = new Function("arg1", "arg2", "body"); 字符串拼接。变量指向了对象
+					1.3 var fn = function(a1, a2) {body}
+					本质上1.1，1.2, 1.3是一样的。
+						注意：js中函数是作为对象存在的。
+						
+				2. 函数的参数
+					函数在调用时，形参可以不赋值，不会报错。
+					形参默认值为undefined.
+				
+				3. 函数的返回值
+					若有返回值，则直接返回。
+					若没有返回值，则返回 undefined。
+				
+			注意：
+				js的代码声明区和执行去是一起的，都是在js代码的代码域中。
+				
+			----------------------------------------------------------------------------
+			函数学习二：
+				1. 函数的执行符
+					()，
+					没有小括号则函数名其实就是一个变量。
+					加上小括号则会 函数执行。
+					
+				2. 函数作为实参传递
+					函数本质上是对象，对象可以作为参数传递。
+					作用：可实现OO中类似 多态 的功能。
+					
+				
+		-->
+		
+		<script type="text/javascript">
+			// 1. declare
+			// 1.1
+			function test1(a1, a2) {
+				alert("函数声明一"+a1+a2);
+			}
+			// 1.2
+			var test2 = new Function("a1", "a2", "alert('函数声明二'+a1+a2)");
+			// 1.3
+			var test3 = function(a1, a2) {
+				alert("函数声明三"+a1+a2);
+				//return "reture_test3";
+			}
+			
+			// invoke
+			/*
+			test1(1,2);
+			test2(1,22); // 使用（）可以调用
+			alert(test2);
+			
+			alert(test3(12, 34));*/
+			
+			// -----------------------------------------------
+			// 1. 函数的执行符
+			document.write("函数的执行符: <br/>");
+			
+			var test11 = function() {
+				document.write("函数的执行符学习");
+			}
+			
+			document.write(test11);
+			document.write("<br/>");
+			document.write(test11());
+			document.write("<br/>");
+			
+			// 2. 函数作为实参进行传递
+			document.write("函数作为实参传递：<br/>");
+			
+			function testobj(a) {
+				document.write(a);
+			}
+			
+			var testParam = function(){
+				document.write("我是函数参数");
+			}
+			
+			testobj(testParam);
+			
+		</script>
+	</head>
+	
+	<body>
+		<h3>js的函数学习</h3>
+		
+	</body>
+
+</html>
+
+

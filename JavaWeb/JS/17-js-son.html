@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>17 js son</title>
+		<meta charset="utf8"/>
+		
+		<script type="text/javascript">
+			function testTime(){
+				window.setInterval(function(){
+					var span = document.getElementById("sec1");
+					span.innerHTML = span.innerHTML - 1;
+					
+					if(span.innerHTML == 0) {
+						window.close();
+					}
+					
+				},1000);
+			}
+			
+			// 调用父页面函数
+			function testF(){
+				window.opener.testFather();
+			}
+			
+			
+		</script>
+		
+		<style type="text/css">
+			#sec1 {
+				color: red;
+				font-size: 25px;
+			}
+		</style>
+	</head>
+	
+	<body onload="testTime();">
+		<h3>son html</h3>
+		<b>欢迎来到我的世界，<span id="sec1">5</span>秒后页面关闭！</b>
+		<input type="button" value="testF" onclick="testF();"/>
+		
+		<img src="../css/img/village01.jpg"/>
+	</body>
+</html>
+
+
+
+
+
+
+
+

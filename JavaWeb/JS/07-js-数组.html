@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title>07 js 数组</title>
+		<meta charset="utf8" />
+		
+		<!--
+			js的数组学习：
+				1. 声明
+					new Array();
+					new Array(len);
+					[];
+					
+					注意: 数组可以不指定长度。数组长度动态可变。
+				2. 数组的赋值、取值。都是通过 [] 实现get、set
+					arr[idx] = val;
+					
+					若角标处没有值或越界，则返回undefined
+				
+				3. 数组的length属性
+					var arr = [];
+					alert(arr.length);
+					
+					arr.length = 100; // 可人为设置长度
+					arr.length = 0; // 可以清空arr
+					
+				4. 数组的遍历
+					普通for循环
+						for(var i=0; i<arr.length; i++) {
+							alert(arr[i]);
+						}
+					
+					for-in
+						for(var i in arr) {
+							// i 是idx
+							alert(arr[i]);
+						}
+					
+		-->
+		
+		<script type="text/javascript">
+			var arr = new Array(); // 声明一个空数组对象
+			arr[0] = "abc";
+			arr[1] = 123;
+			arr[2] = true;
+			arr[4] = new Date(); 
+			
+			// alert(arr);
+			
+			var arr2 = new Array(5); // len: 5
+			// alert(arr2.length); // 5
+			arr2.length=100;
+			// alert(arr2.length); // 100
+			
+			var arr3 = [11,22,33]; // 常用
+			
+			for(var i=0; i<arr.length; i++) {
+				document.write(arr[i] + ", " );
+			}
+			document.write("<br/>");
+			
+			for(var i in arr) {
+				document.write(i+": "); // i是 角标
+				document.write(arr[i] + ", ");
+			}
+			
+			
+		</script>
+	</head>
+	
+	<body>
+		<h3>
+			js 数组学习
+		</h3>
+		<hr/>
+	</body>
+</html>

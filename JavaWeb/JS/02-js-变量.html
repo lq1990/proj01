@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<title>02 js 变量</title>
+		<meta charset="utf8" />
+		
+		<!--
+		1.
+			变量名严格区分大小写。
+			"" '' 单双引号不区分，字符 字符串不区分。
+			若声明同名变量，不会报错，后面的会覆盖前面的。
+		2. 数据类型
+			数据类型判断关键字：typeof
+			数据类型：
+				number
+				string
+				boolean
+				object
+				null 空对象，对象区别于number string boolean
+				undefined 变量声明不赋值的情况下
+			
+		注意：
+			var d;
+			alert(d);
+			alert(typeof c);
+			在js代码中尽可能的给声明的变量 赋初始值，这样typeof就有了具体。
+			
+		3. js的变量强转
+			使用Number()函数，将其他数据类型转换为数值类型，若转换失败则返回NaN
+			Boolean()函数，有值返回true，无值返回false
+				转成boolean类型：
+					number 0: 				false
+					string 空字符串"": 	false
+					object null: 				false
+					声明不赋值的变量： false
+					其它类型： true
+					
+			在if判断中，（）内会隐式Boolean转
+				
+		4. 特殊的值
+			null 			是object
+			undefined 是undefined
+			NaN 		是 number
+		
+		-->
+		
+		<script type="text/javascript">
+			// 变量
+			/**/
+			var a = 123;
+			var A = 123456;
+			var a0 = 1.2345;
+			var a1 = "js";
+			var a2 = 'k';
+			var a3 = true;
+			var a4 = new Date();
+			var a5 = null;
+			
+			// 类型强转
+			// alert(Number("12121"));
+			
+			alert(a4);
+			
+			a=1;
+			alert(Boolean(undefined)); // null,undefined转为Boolean时是false
+
+			function test() {
+				alert("js学习");
+			}
+			
+		</script>
+		
+		<script src="js/" type="text/javascript" charset="utf8"></script>
+	</head>
+
+	<body>
+	
+		<input type="button" id="" value="button" onclick="test()" />
+	
+	</body>
+</html>
+
+
+
+
+
+
+

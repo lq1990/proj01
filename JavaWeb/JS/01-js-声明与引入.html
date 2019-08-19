@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>01 js 声明与引入</title>
+		<meta charset="utf8" />
+		
+		<!--内嵌方式-->
+		<script type="text/javascript">
+			alert("这是我的第一个js");
+		</script>
+		
+		<!--外部js的引入-->
+		<script src="js/my.js" type="text/javascript" charset="utf-8" ></script>
+	</head>
+
+	<!--
+		html是从上到下执行。
+		因此把script写在head中可以，但是script会先于body而执行了。
+	
+		内嵌方式和外部引入方式：
+			公共js代码下载外部js，
+			本文件特有的js写在内嵌js。
+	-->
+	
+	<body>
+		<h3>01 js 声明 引入</h3>
+		<hr/>
+	</body>
+</html>

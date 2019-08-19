@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<title>09 js 数组的操作</title>
+		<meta charset="utf8" />
+		
+		<!--
+			arr.concat(arr1,arr2) 数组合并
+			arr.join("-") 数组 =》字符串，需要指定间隔符
+			arr.push(x) 数组尾部追加
+			arr.pop() 数组尾部去除
+			arr.shift() 移除数组中第一个元素并返回该元素
+			arr.unshift(x) 头部插入
+			arr.reverse()
+			arr.splice(startIdx, deleteCount, [item1, [...]]); // 0-bases indexing，返回被移除的元素
+			
+			
+			
+		-->
+		
+		<script type="text/javascript">
+			var arr = [11, "abc", "张三", "12"];
+			var b = ["天气不错", 123];
+			var c = "js";
+			
+			/*
+			var res0 = arr.concat(b,c);
+			
+			var res = arr.join("-"); // 用 - 将arr中元素串联
+			
+			res = arr.pop(); // "12"
+			
+			arr.push(["lol","aaa", 111]); // 会当做一个元素
+			res= arr;
+			
+			arr.reverse();
+			res=arr;
+			
+			arr.shift();
+			res=arr;
+			 */
+			 
+			arr.splice(1, 2, "x", "y", "z", "m");
+			var res = arr;
+			
+			document.write(
+			"<p>"
+			
+			+res
+			+ "<br/> len: " + res.length
+			+"<br/>"+"typeof: "
+			+ typeof res
+			
+			+"</p>");
+			
+			
+		</script>
+	</head>
+	
+	<body>
+		
+	
+	</body>
+</html>

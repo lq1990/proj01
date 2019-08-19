@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>05 js == ===</title>
+		<meta charset="utf8"/>
+		
+		<!--
+			== 等值运算符
+				比较的类型,
+					若类型一致 则直接比较。
+					若类型不一致，则先使用Number() 转换后再比较
+					
+				当对象之间比较时，会调用object的toString, valueOf 提出值比较
+					
+			=== 等同运算符
+				先判断类型，类型一致再比较内容，内容一致则返回true
+				类型不一致则直接false
+		
+		-->
+		
+		<script type="text/javascript">
+			var a = 1;
+			var a1 = "1";
+			var a2 = true;
+			var a3 = "true";
+			var a4 = "a";
+			var a5 = "a";
+			
+			/*
+			alert(a==a1); // true
+			alert(a==a2); // true
+			alert(a==a3); // flase
+			alert(a1==a2); // true， "1" true 都转成了number，所以==
+			*/
+			
+			alert(null == undefined); // true
+			alert(null === undefined); // false
+			
+			
+		</script>
+	</head>
+	
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<title>12 js 类 对象</title>
+		<meta charset="utf8" />
+		
+		<!--
+			js中类的学习：
+				1. 类的声明
+					function 类名(形参1， 形参2) {
+						
+					}
+				2. 类的使用
+					var obj = new 类名(arg1, arg2);
+					注意：
+						类中的属性知识objs中公共的部分。
+						每个obj还可以自由定义自己的属性。
+					
+				3. 类的“继承”
+					Person.prototype 实现了不同对象之间的数据共享，方法区对象的共享，节省内存。
+					
+					
+				
+		-->
+		
+		<script type="text/javascript">
+			// 1. 类声明, Person。可以理解为：是构造器声明
+			function Person(name, age) {
+				this.name = name;
+				this.age = age;
+				this.fav = "唱歌";
+				
+				/*
+				this.test = function() {
+					document.write("name: "+this.name+", age: "+this.age);
+				}
+				*/
+			}
+			
+			function User(uname, pwd) {
+				this.uname = uname;
+				this.pwd = pwd;
+			}
+			User.prototype.testU = function() {document.write("我是user");}
+			
+			
+			// 类的prototype，可以理解为：静态
+			Person.prototype = new User(); // 实现继承。 prototype 也是一个obj.
+			// 可以理解为：Person的一个属性是一个对象。
+			
+			Person.prototype.testP = function() {
+				document.write("name: "+this.name+", age: "+this.age);
+			}
+			
+			
+			
+			// use
+			var p1 = new Person("张三", 18);
+				p1.testP();
+				p1.address = "bj";
+				document.write("<br/>");
+				document.write(p1.name+"<br/>");
+				document.write(p1.address+"<br/>");
+			
+			var p2 = new Person("anna", 16);
+				document.write(p2.address+"<br/>"); // undefined
+				
+			document.write(p1.test === p2.test);
+			document.write("<br/>");
+			p1.testU();
+		
+			console.log(p1);
+		</script>
+	</head>
+
+	<body>
+			
+	</body>
+</html>
+
+
+
+
+
+
+
+

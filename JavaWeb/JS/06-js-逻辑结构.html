@@ -1,0 +1,57 @@
+<htML>
+	<head>
+		<title>06 js 逻辑结构</title>
+		<meta charset="utf8"  />
+		
+		<!--
+			if/else
+			
+			swtich case
+			
+			for
+			while
+			do while
+		
+		-->
+		
+		<script>
+			var a = 125;
+			var b = 45;
+			
+			if(a>1000) {
+				alert(a+b);
+			}
+			
+			switch (a) { // switch 是===
+				case 1:
+					alert("1");
+					break;
+					
+				case 123:
+					alert("123");
+					break;
+					
+				default:
+					break;
+			}
+			
+			for(var i=0; i<3; i++) {
+				alert(i);
+			}
+			
+			/*99乘法表*/
+			for(var i=1; i<=9; i++) {
+				for(var j=1; j<=i; j++) {
+					document.write(i+" * "+ j + " = " + i*j +"&nbsp;&nbsp;&nbsp;&nbsp;");
+				}
+				document.write("<br/>");
+			}
+		
+		</script>
+	</head>
+	
+	<body>
+		<h3>逻辑结构</h3>
+		<hr/>
+	</body>
+</htML>

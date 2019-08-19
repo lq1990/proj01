@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>19 js document</title>
+		<meta charset="utf8"/>
+		
+		<!--
+			源码从硬盘加载到内存，
+			html代码写好或修改后，浏览器必须reload。
+			
+			有需求：动态改变html元素
+			
+			1. document对象的概念
+				浏览器对外提供的支持 js的用来操作html文档的一个对象，
+				此对象封存html文档的所有信息。
+			
+			2. 使用document。document操作的不是源码，而是对象自己的内容。
+				获取HTML元素对象
+					直接获取方式
+						通过id。name属性值，标签名，class属性名
+					间接获取方式
+					
+				操作HTML元素对象的属性
+				操作HTML元素对象的内容和样式
+				操作HTML的文档结构
+				document操作form元素
+				document操作表格
+				document对象实现form表单校验
+		
+		-->
+		
+		<script type="text/javascript">
+		
+			function testGetEleById(){
+				var elem = window.document.getElementById("uname");
+				console.log(elem);
+				
+			}
+			
+			function testGetEleByName(){
+				var favs = document.getElementsByName("fav");
+				console.log(favs);
+			}
+				
+			function testGetEleByTagName() {
+				var inps = document.getElementsByTagName("input");
+				console.log(inps);
+				
+			}
+			
+			function testGetEleByClassName(){
+				var inps = document.getElementsByClassName("common");
+				console.log(inps);
+			}
+			
+			
+		</script>
+		
+		<style type="text/css">
+			.common {
+				color: blue;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<h3 class="common">document对象的概念 和 获取元素对象学习</h3>
+		<hr/>
+		
+		uname: <input type="text" name="uname" id="uname" value=""/> <br/> <br/>
+		uage: <input type="text" name="uage" id="uage" value=""/> <br/> <br/>
+		<input type="checkbox" name="fav" id="fav" class="common" value="1" />singing
+		<input type="checkbox" name="fav" id="fav" class="common" value="2" />dancing
+		<input type="checkbox" name="fav" id="fav" value="3" />game
+		<input type="checkbox" name="fav" id="fav" value="4" />ball
+		
+		<input type="button" value="getElementById" onclick="testGetEleById();"/><br/>
+		<input type="button" value="getElementsByName" onclick="testGetEleByName();"/><br/>
+		<input type="button" value="getElementsByTagName" onclick="testGetEleByTagName();"/><br/>
+		<input type="button" value="getElementsByClassName" onclick="testGetEleByClassName();"/><br/>
+		
+		
+	</body>
+</html>
+
+
+
+
+
+
+

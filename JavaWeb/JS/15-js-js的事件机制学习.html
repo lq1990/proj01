@@ -1,0 +1,177 @@
+<html>
+	<head>
+		<title>
+			15 js 事件机制
+		</title>
+		<meta charset="utf8"/>
+		<!--
+			js 的事件机制：
+				是：当我们的行为动作满足了一定的条件后，会触发某类事务的执行。
+				作用	: 主要是结合js的fn使用。
+				内容：
+					1. 单双击事件
+						单击：onclick
+						双击：ondblclick
+					2. 鼠标事件
+						onmouseover
+						onmousemove
+						onmouseout
+					3. 键盘事件
+						onkeyup
+						onkeydown
+					4. 焦点事件
+						onfocus
+						onblur 用于校验
+					
+					5. 页面加载事件
+						onload 用于加载资源，比如select下拉框
+					
+					
+				注意：
+					js中添加事件的方式
+						在html直接使用事件属性进行添加，onxxx="所监听执行的函数"。
+					js中的时间只有在当前html元素上有效。
+					一个html元素可以添加多个不同的事件。
+						不同函数用分号；间隔
+					
+			// ========================
+			1. 给合适的html标签添加合适的事件：
+				onchange 			=> select
+				onload 				=> body
+				onclick, ondblclick => 用户会进行点击动作的html元素
+				鼠标事件				=》
+				键盘事件
+				
+			2. 给html元素添加多个事件时，注意事件之间的冲突
+			3. 事件的阻断
+				当事件所监听的函数将返回值返回给事件时：
+					false：则会阻断当前事件所在的html标签的功能，比如a标签跳转会被阻断
+					true：不阻断
+				用途：表单校验时，若不满足，则不跳转
+			4. 超链接调用js函数：
+				<a href="javascript:fn()">name</a>
+			
+		-->
+		
+		
+		
+		<script type="text/javascript">
+			function testOnclick() {
+				console.log("我是单击");
+			}
+			
+			function testOndblclick() {
+				console.log("我是dbl击");
+			}
+			
+			function testOnmouseover() {
+				console.log("我是鼠标悬停事件");
+			}
+			
+			function testOnmousemove() {
+				console.log("mouse move");
+			}
+			
+			function testOnmouseout() {
+				console.log("mouse out");
+			}
+			
+			function testOnkeyup() {
+				console.log("on keyup");
+			}
+			
+			function testOnkeydown() {
+				console.log("on keydown");
+			}
+			
+			function testOnfocus() {
+				document.getElementById("div1").innerHTML += "哈哈";
+				console.log("onfocus");
+			}
+			
+			function testOnblur() {
+				console.log("onblur");
+			}
+			
+			function testOnload() {
+				console.log("页面加载事件");
+			}
+			
+			function testOnchange() {
+				console.log("改变了");
+			}
+			
+			function testA() {
+				alert("事件的阻断");
+				return false; // false会阻断
+			}
+			
+			function testHref() {
+				alert("我是超链接调用");
+			}
+			
+			
+		</script>
+		
+		<style type="text/css">
+			#div1 {
+				width: 300px;
+				height: 300px;
+				border: solid 1px black;
+			}
+		</style>
+	</head>
+	
+	<body onload="testOnload();">
+		<h3>js的事件机制学习</h3>
+		<hr/>
+		<input type="button" id="" value="btn" onclick="testOnclick();" />
+		<input type="button" id="" value="dbl-btn" ondblclick="testOndblclick();" />
+		<input type="button" id="" value="dbl-btn" 
+			onclick="testOnclick();"
+			ondblclick="testOndblclick();" /> <!--此元素同时on了单双击-->
+		
+		<hr/>
+		<br/>
+		
+		<div id="div1" 
+			onmouseover="testOnmouseover();" 
+			onmousemove="testOnmousemove();"
+			onmouseout="testOnmouseout();">
+			
+		</div>
+		
+		键盘事件学习：
+		<input type="text" id="" value="" 
+			onkeyup="testOnkeyup();" 
+			onkeydown="testOnkeydown();" 
+			onchange="testOnchange();"
+			/>
+		
+		焦点事件学习：
+		<input type="text" name="" value="" 
+			onfocus="testOnfocus();"
+			onblur="testOnblur();" />
+		
+		<br/>
+		<select name="" id="" onchange="testOnchange();">
+			<option value="">bj</option>
+			<option value="">sh</option>
+			<option value="">sz</option>
+		</select>
+		
+		<a href="http://www.baidu.com" target="_blank" onclick="return testA()">baidu</a>
+	
+		<br/>
+		超链接调用js函数：
+		<a href="javascript:testHref()">调用js fn</a>
+	
+	</body>
+</html>
+
+
+
+
+
+
+

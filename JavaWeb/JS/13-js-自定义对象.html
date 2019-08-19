@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title>13 js 自定义对象</title>
+		<meta charset="utf8"/>
+		
+		<!--
+			自定义obj作用：
+				存储数据用。
+				在于server数据交互时，若不知过来何类数据，则用obj实时接收，
+				因为obj的动态特性，可以实现此功能。
+				
+				应用：
+					Ajax中会使用。
+				
+				code:
+					方式1：
+					var obj = new Object();
+						obj.a1=a1;
+						obj.a2=a2;
+						obj.fn1 = function(){}
+						...
+						
+					方式2：
+					var obj = {};
+						obj.a1 = a1; 
+						...
+						
+			心得：
+				js中的对象属性和内容是可以自定义的，可扩充，
+				不依赖于类的声明，类只是对象公共部分的一种声明，为了避免代码的冗余。
+				
+				这与java的先有类再new对象的思路不同。
+				
+		-->
+		
+		<script type="text/javascript">
+			// 1. 创建自定义对象
+			var obj = new Object(); // Object 是祖宗
+			obj.name = "beta";
+			obj.age = 23;
+			obj.test = function(){
+				console.log("我是obj");
+			}
+			
+			console.log(obj);
+			obj.test();
+			
+		</script>
+	</head>
+	
+	<body>
+			
+	</body>
+</html>
+
+
+
+
+
+
+
