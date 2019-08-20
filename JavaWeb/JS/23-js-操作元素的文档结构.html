@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<title>23 js 操作元素的文档结构</title>
+		<meta charset="utf8"/>
+		
+		<!--
+			js操作html文档结构：
+				增加节点
+				删除节点
+				方式1：
+					使用 innerHTML
+						div.innerHTML += "内容"; // 增加节点
+						div.innerHTML = ""; // 删除所有子节点
+						父节点.removeChild(子节点对象); // 删除指定的子节点
+						
+			问题：
+				当上传了file，再点击 继续上传 时，已经上传的file会消失。
+				
+				
+						
+		-->
+
+		<script type="text/javascript">
+			function testAdd() {
+				var div = document.getElementById("showdiv");
+				div.innerHTML += '<div><input type="file" name="" id="" value="" /><input type="button" value="删除" onclick="delInp(this);" /></div>';
+				
+			}
+			
+			// 参数btn，当前点击的btn
+			function delInp(btn) {
+				// 获取父级div
+				var showdiv = document.getElementById("showdiv");
+				
+				// 获取要删除的子div
+				var cdiv = btn.parentNode; // 因为div包裹了this btn，btn父级元素就是待删除的div
+				
+				// 父div删除子div
+				showdiv.removeChild(cdiv); // 移除
+				
+			}
+		</script>
+		
+	</head>
+	
+	
+	<body>
+		<h3>js操作元素的文档结构</h3>
+		<input type="button" value="继续上传" onclick="testAdd();" />
+		<hr/>
+		
+		<div id="showdiv">
+			
+		</div>
+		
+		
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+

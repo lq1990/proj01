@@ -1,0 +1,93 @@
+<html>
+	<head>
+		<title>20 js 操作html的元素属性</title>
+		<meta charset="utf8"/>
+		<!--
+			获取元素对象
+			操作元素属性
+				获取
+					元素对象名.属性名 // 返回当前属性的属性值(元素固有属性)
+					元素对象名.getAttribute("attr_name"); 返回自定义属性的值
+				修改
+					元素对象名.属性名 = 属性值
+					元素对象名.setAttribute("attr_name", "new_value"); 修改自定义属性的值
+					
+				注意：
+					尽量不要去修改元素的id，name（name值作为key）
+					elem.getAttribute("value"); 的使用注意：不能获取用户实时修改的value值。
+					应使用 elem.value获取;
+		-->
+		
+		<script type="text/javascript">
+			function testField() {
+				var inp = document.getElementById("uname");
+				console.log("type: "+inp.type+
+					", name: "+inp.name+", id: "+inp.id+", value: "+inp.value);
+			}
+			
+			function testField2() {
+				var inp = document.getElementById("uname");
+				inp.value="哈哈";
+				inp.type="button";
+				
+			}
+			
+			// 声明函数---自定义属性
+			// 获取
+			function testOwnField() {
+				var inp = document.getElementById("uname");
+				console.log(inp.abc); // 不能通过这种方式
+				console.log(inp.getAttribute("abc"));
+			}
+			
+			// 修改
+			function testOwnField2() {
+				var inp = document.getElementById("uname");
+				inp.setAttribute("abc", "哈哈");
+			}
+			
+			// 使用 getAttribute 获取固有属性值
+			function testOper() {
+				var inp = document.getElementById("uname");
+				console.log(inp.getAttribute("type"));
+				console.log(inp.getAttribute("value"));
+				// 注意，用户实时更改的value值，用getAttribute拿不到。
+				
+				console.log(inp.value);
+				
+			}
+			
+		</script>
+	</head>
+
+	<body>
+		<h3>js操作html的元素属性</h3>
+		<input type="button" name="" id="" value="测试获取元素属性" 
+			onclick="testField();" />
+		<input type="button" name="" id="" value="修改元素属性" 
+			onclick="testField2();" />
+		<input type="button" name="" id="" value="get my元素属性" 
+			onclick="testOwnField();" />
+		<input type="button" name="" id="" value="set my元素属性" 
+			onclick="testOwnField2();" />
+		<input type="button" name="" id="" value="testOper" 
+			onclick="testOper();" />
+			
+		<hr/>
+		<input type="text" name="uname" id="uname" value="" 
+			abc="嘿嘿" />
+		
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

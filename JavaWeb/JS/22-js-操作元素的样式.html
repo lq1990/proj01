@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<title>22 js 操作元素的样式</title>
+		<meta charset="utf8"/>
+		
+		<style type="text/css">
+			#div01, .common {
+				border: solid 2px blue;
+				width: 200px;
+				height: 200px;
+			}
+			
+			.common2 {
+				border: solid 2px orange;
+				width: 300px;
+				height: 300px;
+			}
+			
+		</style>
+		
+		<!--
+			js操作元素样式：
+			通过style属性：
+				给元素添加、修改、删除样式
+					elem.style.样式名 = "值"; //添加或修改
+					elem.style.样式名 = ""; 删除样式
+			
+			通过className，修改的是标签中class对应的样式类
+				elem.className="样式类名"; // 添加或修改
+				elem.className=""; // del
+			
+			注意：
+				以上操作，操作的是html的style属性声明的样式，而不是css中
+		-->
+		
+		<script type="text/javascript">
+		
+			// 操作元素的样式
+			function testAddCss() {
+				var div = document.getElementById("div01");
+				//div.style.backgroundColor = 'red'; // 修改style中属性，驼峰命名
+				
+				div.style.border='solid 5px orange';
+				
+				div.style.border = ""; // delete 标签style中，而不是css中
+			}
+			
+			// js操作样式 className
+			function testOperCss() {
+				// get elem
+				var div = document.getElementById("div02");
+				
+				// get
+				console.log(div.className);
+				
+				// edit
+				div.className = "common2"; //提前准备好 样式common2，修改类名
+				
+				// del
+				div.className = "";
+				
+			}
+			
+		</script>
+	</head>
+	
+	<body>
+		<h3>22 js 操作元素的样式</h3>
+		<input type="button" value="testAddCss" onclick="testAddCss();" />
+		<input type="button" value="testOperCss" onclick="testOperCss();" />
+		
+		<hr/>
+		
+		<div id="div01" style="border: solid 10px red;">
+			
+		</div>
+		
+		<br/>
+		<div id="div02" class="common" >
+			
+		</div>
+	</body>
+</html>
+
+
+
+

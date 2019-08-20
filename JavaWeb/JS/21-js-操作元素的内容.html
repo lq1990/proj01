@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<title>21 js 操作元素的内容</title>
+		<meta charset="utf8" />
+		
+		<!--
+			操作元素：
+				获取
+					elem.innerHTML 返回当前元素对象的所有内容，包括html标签
+					elem.innerText 返回文本内容，不包含html标签
+					
+				修改：
+					elem.innerHTML = "new data"; 由于是html内容，标签会被解析显示
+					elem.innerText = "new text"; 纯文本显示
+		-->
+		
+		<style type="text/css">
+			#div01 {
+				border: solid 1px;
+				width: 200px;
+				height: 200px;
+			}
+			
+		</style>
+		
+		<script type="text/javascript">
+			function getContext() {
+				var div = document.getElementById("div01");
+				console.log(div.innerHTML); // 获取的是 div中所有html，包含标签
+				// console.log(div.innerText);
+			}
+			
+			function updateContext() {
+				var div = document.getElementById("div01");
+				div.innerHTML += "<br/>路漫漫其修远兮";
+				
+			}
+			
+		</script>
+	</head>
+	
+	<body>
+		<h3>js操作元素内容的学习</h3>
+		<input type="button" value="getContext" onclick="getContext();" />
+		<input type="button" value="updateContext" onclick="updateContext();" />
+		<hr/>
+		
+		<div id="div01">
+			<b> 诗词鉴赏 </b>
+		</div>
+	</body>
+</html>
+
+
+
+
+

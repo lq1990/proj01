@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<title>24 js 操作文档结构2</title>
+		<meta charset="utf8"/>
+		
+		<!--
+			js操作文档结构，方式2：
+				创建对象，再 appendChild
+					var obj = document.createElement("标签名");
+					目标.appendChild(obj);
+				
+				
+		-->
+		
+		<script type="text/javascript">
+			function testOper2() {
+				var showdiv = document.getElementById("showdiv");
+				
+				// --------- 准备要添加的元素 --------------
+				var inp = document.createElement("input");
+				inp.type="file";
+				
+				var btn = document.createElement("input");
+				btn.type = "button";
+				btn.value="删除";
+				btn.onclick = function() {
+					showdiv.removeChild(inp);
+					showdiv.removeChild(btn);
+					showdiv.removeChild(br);
+				}
+				
+				var br = document.createElement("br");
+				
+				// ------------ appendChild to showdiv -----------
+				showdiv.appendChild(inp);
+				showdiv.appendChild(btn);
+				showdiv.appendChild(br);
+				
+				// 使用append的优点：已经上传的file，不会因为点击 继续上传 而丢失。
+					
+				
+			}
+			
+		</script>
+	</head>
+	
+	<body>
+		<h3>js操作文档结构2</h3>
+		<input type="button" value="继续上传" onclick="testOper2();" />
+		<hr/>
+		
+		<div id="showdiv">
+		</div>
+		
+	</body>
+</html>
+
+
+
+
+
+

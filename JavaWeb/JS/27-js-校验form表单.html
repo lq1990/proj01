@@ -1,0 +1,306 @@
+<html>
+	<head>
+		<title>27 js 校验form表单</title>
+		<meta charset="utf8"/>
+		
+		<style type="text/css">
+			body {
+				background-image: url(img/wallpaper1.jpg);
+				background-size: cover;
+				color: #fff;
+			}
+			
+			#codeSpan {
+				background-image: url(img/noise.jpg);
+				background-size: cover;
+			}
+			
+		</style>
+		
+		<script type="text/javascript">
+			// 创建验证码
+			function createCode(){
+				var code = Math.floor(Math.random()*9000+1000);
+				
+				var span = document.getElementById("codeSpan");
+				span.innerHTML = code;
+			}
+			
+			// 验证用户名
+			function checkUname() {
+				// 获取用户的用户名信息
+				var uname = document.getElementById("uname").value;
+				
+				// regexp
+				var regexp = /^[\u4e00-\u9fa5]{2,4}$/;
+				
+				var span = document.getElementById("unameSpan");
+				
+				// 开始校验
+				if(uname == "" || uname == null) {
+					span.innerHTML = "用户名不能为空";
+					span.style.color = "red";
+					return false;
+				} else if(regexp.test(uname)) {
+					span.innerHTML="有效的用户名";
+					span.style.color = "#fff";
+					return true;
+				} else {
+					span.innerHTML="用户名不符合规则";
+					span.style.color = "red";
+					return false;
+				}
+				
+			}
+		
+			// 验证密码
+			function checkPwd(){
+				var pwd = document.getElementById("pwd").value;
+				var regexp = /^[a-z]\w{5,7}$/;
+				var span = document.getElementById("pwdSpan");
+				
+				if(pwd=="" || pwd==null){
+					span.innerHTML = "密码不能为空";
+					span.style.color = "red";
+					return false;
+				} else if(regexp.test(pwd)) {
+					span.innerHTML = "密码OK";
+					span.style.color = "#fff";
+					return true;
+				} else {
+					span.innerHTML = "密码格式不对";
+					span.style.color = "red";
+					return false;
+				}
+				
+				checkPwd2();
+			}
+			
+			// 校验确认密码
+			function checkPwd2(){
+				// 获取第一次密码
+				var pwd1 = document.getElementById("pwd").value;
+				
+				// 获取确认密码
+				var pwd2 = document.getElementById("pwd2").value;
+				
+				// span
+				var span = document.getElementById("pwd2Span");
+				
+				// 比较两次密码是否相同
+				if(pwd2=="" || pwd2==null){
+					span.innerHTML="确认密码不能为空";
+					span.style.color="red";
+					return false;
+				} else if(pwd1 === pwd2) {
+					span.innerHTML="OK";
+					span.style.color="white";
+					return true;
+				} else {
+					span.innerHTML="两次密码不一致";
+					span.style.color="red";
+					return false;
+				}
+				
+				
+			}
+			
+			function checkPhone(){
+				return checkField("phone", /^1[3,4,5,7,8]\d{9}$/);
+			}
+			
+			function checkMail(){
+				return checkField("email", /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+$/);
+			}
+			
+			function checkAddress(){
+				var sel = document.getElementById("address").value;
+				var span = document.getElementById("addressSpan");
+				
+				if(sel != 0) {
+					span.innerHTML="OK";
+					span.style.color="#fff";
+					return true;
+				} else {
+					span.innerHTML="请选择籍贯";
+					span.style.color="#f00";
+					return false;
+				}
+			}
+			
+			function checkFav(){
+				var favs = document.getElementsByName("fav");
+				
+				var span = document.getElementById("favSpan");
+				
+				for(var i=0; i<favs.length; i++) {
+					if(favs[i].checked) {
+						span.innerHTML="OK";
+						span.style.color="#fff";
+						return true;
+					}
+				}
+				
+				span.innerHTML="请至少选择一个爱好";
+				span.style.color="#f00";
+				return false;
+			}
+			
+			function checkAgree() {
+				document.getElementById("sub").disabled = !document.getElementById("agree").checked;
+			}
+			
+			// 提交判断
+			function checkSub(){
+				checkUname();
+				checkPwd(); 
+				checkPwd2(); 
+				checkPhone();
+				checkMail(); 
+				checkAddress();
+				checkFav();
+			
+				 return checkUname()  && checkPwd() && checkPhone() && checkMail() && checkAddress() && checkFav();
+				
+			}
+			
+			// -----------------------------------------------------------------------
+			// 封装校验：相同的保留，不同的传参
+			 function checkField(id, regexp) {
+				var inp = document.getElementById(id);
+				var va = inp.value;
+				var alt = inp.alt;
+				
+				var span = document.getElementById(id+"Span");
+				
+				if(va=="" || va==null){
+					span.innerHTML = alt+"不能为空";
+					span.style.color = "red";
+					return false;
+				} else if(regexp.test(va)) {
+					span.innerHTML = alt+" OK";
+					span.style.color = "#fff";
+					return true;
+				} else {
+					span.innerHTML = alt+"格式不对";
+					span.style.color = "red";
+					return false;
+				}
+			 }
+			
+		</script>
+	</head>
+	
+	<body onload="createCode(); ">
+		<div id="showdiv"></div>
+		<!--
+			阻断
+		-->
+		<form action="#" method="get" onsubmit="return checkSub()" >
+	
+			<table>
+			<tr>
+				<td width="80px">uname:</td>
+				<td width="">
+					<input type="text" name="uname" id="uname" alt="用户名" value="" onblur="checkUname();" /><span id="unameSpan" >*2-4个汉字</span>
+				</td>
+			</tr>
+			<tr>
+				<td>pwd:</td>
+				<td>
+					<input type="password" name="pwd" id="pwd" alt="密码" onblur="checkPwd();" />
+					<span id="pwdSpan">*字母开头，共6到8位字母、数字、下划线</span>
+				</td>
+			</tr>
+			<tr>
+				<td>确认密码:</td>
+				<td>
+					<input type="password" id="pwd2" alt="确认密码" onblur="checkPwd2();" />
+					<span id="pwd2Span"></span>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>phone:</td>
+				<td>
+					<input type="text" name="phone" id="phone" alt="phone" onblur="checkPhone();" />
+					<span id="phoneSpan"></span>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>email:</td>
+				<td>
+					<input type="text" name="email" id="email" alt="email" onblur="checkMail();" />
+					<span id="emailSpan"></span>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>籍贯：</td>
+				<td>
+					<select id="address" name="address" onchange="checkAddress();">
+						<option value="0">-- 请选择 --</option>
+						<option value="1">北京</option>
+						<option value="2">上海</option>
+						<option value="3">广州</option>
+						<option value="4">深圳</option>
+					</select>
+					<span id="addressSpan"></span>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>爱好：</td>
+				<td>
+					<input type="checkbox" name="fav" value="1" onclick="checkFav();" />唱歌
+					<input type="checkbox" name="fav" value="2" onclick="checkFav();" />跳舞
+					<input type="checkbox" name="fav" value="3" onclick="checkFav();" />跑步
+					<span id="favSpan"></span>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>个人简介：</td>
+				<td>
+					<textarea name="intro" rows="5" cols="20"></textarea>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>验证码：</td>
+				<td>
+					<input type="text" name="code" id="code" value="" style="width: 100px;"  />
+					&nbsp;
+					<span id="codeSpan" onclick="createCode();"> <!--加span可以方便取元素。-->
+					</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" style="padding-left: 50px;">
+					<input type="checkbox" id="agree" value="0" onclick="checkAgree();"  />是否同意协议？
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" style="padding-left: 100px;">
+					<input type="submit" id="sub" value="注册" disabled="disabled" />
+				</td>
+			</tr>
+			
+			
+		</table>
+	
+		</form>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+

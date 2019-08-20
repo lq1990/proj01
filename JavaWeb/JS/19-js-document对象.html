@@ -19,6 +19,16 @@
 					直接获取方式
 						通过id。name属性值，标签名，class属性名
 					间接获取方式
+						// 父子关系，通过父元素获取子元素
+							var div = document.getElementById("div1");
+							var kids = div.childNodes;
+						// 子父关系	
+							var inp = document.getElementById("inp");
+							var div = inp.parentNode; // 获取父节点
+						// 兄弟关系
+							var inp = document.getElementById("inp");
+							var preSib = inp.previousSibling;
+							var nextSib = inp.nextSibling;
 					
 				操作HTML元素对象的属性
 				操作HTML元素对象的内容和样式
@@ -53,6 +63,29 @@
 				console.log(inps);
 			}
 			
+			// 间接获取方式
+				// 父子关系
+					function testParent() {
+						var div = document.getElementById("div1");
+						var kids = div.childNodes;
+						console.log(kids);
+					}
+				
+				// 子父关系
+					function testChild() {
+						var inp = document.getElementById("inp");
+						var div = inp.parentNode; // 获取父节点
+						console.log(div);
+					}
+				// 兄弟关系
+					function testBrother() {
+						var inp = document.getElementById("inp");
+						var preSib = inp.previousSibling;
+						var nextSib = inp.nextSibling;
+						console.log(preSib);
+						console.log(nextSib);
+					}
+			
 			
 		</script>
 		
@@ -60,13 +93,18 @@
 			.common {
 				color: blue;
 			}
+			#div1 {
+				border: solid 2px orange;
+				width: 300px;
+				height: 300px;
+			}
 		</style>
 	</head>
 	
 	<body>
 		<h3 class="common">document对象的概念 和 获取元素对象学习</h3>
 		<hr/>
-		
+		直接获取方式学习：<br/>
 		uname: <input type="text" name="uname" id="uname" value=""/> <br/> <br/>
 		uage: <input type="text" name="uage" id="uage" value=""/> <br/> <br/>
 		<input type="checkbox" name="fav" id="fav" class="common" value="1" />singing
@@ -78,6 +116,23 @@
 		<input type="button" value="getElementsByName" onclick="testGetEleByName();"/><br/>
 		<input type="button" value="getElementsByTagName" onclick="testGetEleByTagName();"/><br/>
 		<input type="button" value="getElementsByClassName" onclick="testGetEleByClassName();"/><br/>
+		
+		<hr/>
+		间接获取方式学习：<br/>
+		<input type="button" name="" id="" value="testParent" onclick="testParent();" />
+		<input type="button" name="" id="" value="testChild" onclick="testChild();" />
+		<input type="button" name="" id="" value="testBrother" 
+			onclick="testBrother();" />
+		<div id="div1">
+			<input type="" name="" id="inp" value="" />
+			<input type="" name="" id="" value="" />
+			<input type="" name="" id="" value="" />
+			<input type="" name="" id="" value="" />
+			<input type="" name="" id="" value="" />
+			<input type="" name="" id="" value="" />
+		</div>
+		
+		
 		
 		
 	</body>
