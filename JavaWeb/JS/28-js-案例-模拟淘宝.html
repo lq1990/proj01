@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<title>28 js 模拟淘宝</title>
+		<meta charset="utf8" />
+		<script type="text/javascript">
+		
+			// 当鼠标移到小图上时，触发事件
+			function operInImg(img) {
+				
+				img.style.border="solid 1px black";
+				
+				// 设置大图的img
+				var big = document.getElementById("big");
+				big.src = img.src;
+				
+			}
+			
+			function operOutImg(img) {
+				img.style.border="solid 1px white";
+				
+			}
+			
+		</script>
+		
+		<style type="text/css">
+			#showdiv {
+				width: 350px;
+				height: 350px;
+				border: solid 1px;
+				border-radius: 20px;
+			}
+			
+			#ta {
+				margin: 0 auto;
+				margin-top: 10px;
+			}
+			
+			img {
+				border: solid 1px white;
+			}
+			
+		</style>
+		
+	</head>
+
+	<body>
+		
+		<div id="showdiv">
+			<table id="ta" border="0px" width="270px" height="310px">
+				<tr height="250px" >
+					<td colspan="5">
+						<img id="big" style="width: 300px;height: 200px;margin-left: 9px;" src="img/village01.jpg" />
+					</td>
+				</tr>
+				<tr height="60px">
+					<td><img style="width: 60px;height:40px;" src="img/village01.jpg" onmouseover="operInImg(this);" onmouseout="operOutImg(this);" /></td>
+					<td><img style="width: 60px;height:40px;" src="img/village02.jpg" onmouseover="operInImg(this);" onmouseout="operOutImg(this);" /></td>
+					<td><img style="width: 60px;height:40px;" src="img/village03.jpg" onmouseover="operInImg(this);" onmouseout="operOutImg(this);" /></td>
+					<td><img style="width: 60px;height:40px;" src="img/village04.jpg" onmouseover="operInImg(this);" onmouseout="operOutImg(this);" /></td>
+					<td><img style="width: 60px;height:40px;" src="img/village05.jpg" onmouseover="operInImg(this);" onmouseout="operOutImg(this);" /></td>
+				</tr>
+			</table>
+		</div>
+		
+	</body>
+</html>
+
+
+
+
+
+
+

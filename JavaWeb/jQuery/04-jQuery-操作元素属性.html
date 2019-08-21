@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<title>04 jQuery 操作元素属性</title>
+		<meta charset="utf8" />
+		
+		<!--
+			jQuery操作元素属性：
+				获取：
+					对象名.attr("属性名") // 返回当前属性值
+						注意此种方式不能获取value属性的实时数据，使用 对象名.val() 可以获取。
+				
+				修改：
+					对象名.attr("属性名", "属性值")
+				
+		-->
+		
+		<script src="js/jquery-1.9.1.js" charset="utf8" type="text/javascript" ></script>
+		<script type="text/javascript">
+			function testField(){
+				var uname = $("#uname");
+				
+				console.log(uname.attr("type"));
+				console.log(uname.attr("value")); // 取得默认的value
+				console.log(uname.val()); // 可以拿到实时的值
+				
+			}
+			
+			function testField2() {
+				// set
+				var uname = $("#uname");
+				uname.attr("type", "button");
+				
+			}
+			
+		</script>
+	</head>
+	
+	<body>
+		<h3>jQuery操作元素属性</h3>
+		<input type="button" value="testField" onclick="testField();" />
+		<input type="button" value="testField2" onclick="testField2();" />
+		<hr/>
+		
+		uname: <input  type="text" id="uname" name="uname" value="well" />
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

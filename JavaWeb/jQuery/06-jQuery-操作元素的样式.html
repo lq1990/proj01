@@ -1,0 +1,89 @@
+<html>
+	<head>
+		<title>06 jQuery 操作元素的样式</title>
+		<meta charset="utf8" />
+		
+		<!--
+			jquery操作元素的样式：
+				1. 使用 css()
+					对象名.css("属性名") // get
+					对象名.css("属性名", "属性值") // set
+					对象名.css({"样式名": "样式值", "":"", ...}) // json，提升代码书写效率
+					
+				2. 使用addClass(" "), removeClass(" ")
+					
+		-->
+		
+		<style type="text/css">
+			#showdiv {
+				width: 300px;
+				height: 300px;
+				border: solid 1px;
+			}
+			
+			.common {
+				width: 300px;
+				height: 300px;
+				border: solid 2px;
+				background-color: #44d39f;
+			}
+			
+			.dd {
+				font-size: 60px;
+			}
+		</style>
+		
+		<script src="js/jquery-1.9.1.js" charset="utf8" type="text/javascript"></script>
+		<script type="text/javascript">
+			function testCss(){
+				var div = $("#showdiv");
+				console.log(div.css("background-color", "orange"));
+			}
+			
+			function testCss2(){
+				// 使用json格式，同时设置多个样式
+				var div = $("#div01");
+				div.css({
+					"border":"solid 2px red",
+					"width":"269px",
+					"height":"234px"
+				});
+			}
+			
+			// 类选择器方式，改变样式
+			function testAddClass(){
+				var div=$("#div01");
+				div.addClass("common");
+			}
+			
+			function testAddClass2() {
+				var div=$("#div01");
+				div.addClass("dd");
+			}
+			
+			function testRemoveDD(){
+				var div=$("#div01");
+				div.removeClass("dd");
+			}
+			
+		</script>
+	</head>
+	
+	<body>
+		<h3>jQuery操作元素的样式</h3> 
+		<input type="button" value="testCss" onclick="testCss();" />
+		<input type="button" value="testCss2" onclick="testCss2();" />
+		<input type="button" value="testAddClass" onclick="testAddClass();" />
+		<input type="button" value="testAddClass2" onclick="testAddClass2();" />
+		<input type="button" value="testRemoveDD" onclick="testRemoveDD();" />
+		<hr/>
+		
+		<div id="showdiv">
+		
+		</div>
+		
+		<div id="div01">
+			good
+		</div>
+	</body>
+</html>

@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>02 jQuery 的封装原理</title>
+		<meta charset="utf8" />
+		
+		<!--
+			注意：
+				1. js的全部代码区只有一个，这样会造成同名变量的值会被覆盖。
+				2.	解决方法：使用对象封装，将代码封装到对象中。
+					但：若对象被覆盖，则原对象都失效。
+				3. 对2的解决，使用工厂模式。function有个名词。
+					问题：function的名称 仍然有被覆盖的风险。
+				4. 解决3. 将封装的函数名字去除，避免覆盖。
+					但, 函数如何调用？？？
+				5. 函数的 匿名自调用。可以在页面加载时调用一次。
+					问题：但不能重复使用，并且数据不能获取。
+				6. 解决5. 使用闭包。
+					将数据一次性挂载到window上。
+		
+		-->
+		
+		<script src="js/my.js" charset="utf8" type="text/javascript"></script>
+		
+		<script type="text/javascript">
+			function test0 (){
+				console.log("test 内嵌");
+			}
+			
+			// 闭包，在外部不能够获取函数体内的数据。闭包：将小作用域范围的数据传递给外面大作用域。
+				// 局部作用域
+			function test00(){
+				function test2() {
+					test2.name = "张三";
+					
+					var n=999;
+					return n;
+				}
+				
+				return test2;
+			}
+			
+		</script>
+	</head>
+	
+	<body>
+		<h3>jQuery的封装原理</h3>
+		<hr/>
+		<input type="button" value="test_inner" onclick="test0();" />
+		<input type="button" value="test_outer" onclick="wendao.test();" />
+	</body>
+</html>
+
+
+
+
+
+
+
+

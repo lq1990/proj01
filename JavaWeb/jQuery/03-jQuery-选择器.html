@@ -1,0 +1,151 @@
+<html>
+	<head>
+		<title>03 jQuery 选择器</title>
+		<meta charset="utf8" />
+		
+		<!--
+			基本选择器
+				id选择器 		$("#a")
+				标签选择器 	$("a")
+				类选择器		$(".a") 
+				组合选择器	$("a, b, c")
+				
+			层级选择器
+				子选择器		>
+				
+			简单选择器
+			内容选择器
+			可见性选择器
+			属性选择器
+			子元素选择器
+			表单选择器
+				
+			注意：
+				jQuery中选择器获取的是：存储了html元素对象的数组
+				jQuery获取的元素对象不能直接使用js的内容，
+					按照数组的取出方式将对象取出后，可以使用js的内容。
+				
+		-->
+		
+		<script src="js/jquery-1.9.1.js" charset="utf8" type="text/javascript"></script>
+		<script type="text/javascript">
+			// id选择器
+			function testId(){
+				var inp = $("#uname");
+				console.log(inp.val()); // 注意区分 原生的是inp.value
+				// inp.val() 取出第一个元素的值
+			}
+			
+			// 标签选择器
+			function testEle() {
+				var inps = $("input"); // 数组
+				console.log(inps[1].value); // 因为inps[1] 是原生node元素，所以用 value
+			}
+			
+			// 类选择器
+			function testClass(){
+				var inp = $(".common");
+				console.log(inp);
+				
+			}
+			
+			// 组合选择器
+			function testAll(){
+				var all=$("h3, #uname");
+				console.log(all);
+			}
+			
+			// 测试子选择器
+			function testChild() {
+				var inps = $("#showdiv>input");
+				console.log(inps.length);
+			}
+			
+			// 测试层级选择器
+			function testCj() {
+				var inp = $("input:first"); // 取出第一个input
+				console.log(inp.val()); // ==> inp[0].value
+			}
+			
+			// 属性选择器
+			function testCj2() {
+				var tds = $("td:not(td[width])"); // td[width] 属性选择器
+				console.log(tds.length);
+				console.log(tds.html());
+			}
+			
+		</script>
+		
+		<style type="text/css">
+			.common {
+				border: solid 2px;
+			}
+			
+			#showdiv {
+				width: 300px;
+				height: 300px;
+				border: solid 1px;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<h3>jQuery的选择器</h3>
+		<input type="button" value="testId" onclick="testId();" />
+		<input type="button" value="testEle" onclick="testEle();" />
+		<input type="button" value="testClass" onclick="testClass();" />
+		<input type="button" value="testAll" onclick="testAll();" />
+		<input type="button" value="testChild" onclick="testChild();" />
+		<input type="button" value="testCj" onclick="testCj();" />
+		<input type="button" value="testCj2" onclick="testCj2();" />
+		<hr/>
+		
+		uname: <input type="text" name="uname" id="uname" class="common" value="张三" />
+		pwd: <input type="password" name="pwd" id="pwd" value="" />
+		
+		<br/>
+		<br/>
+		<div id="showdiv">
+			<input type="text" value="" name="" id="" />
+			<input type="text" value="" name="" id="" />
+			<input type="text" value="" name="" id="" />
+			<input type="text" value="" name="" id="" />
+		</div>
+		<div id="">
+			<input type="text" value="" name="" id="" />
+			<input type="text" value="" name="" id="" />
+			<input type="text" value="" name="" id="" />
+			<input type="text" value="" name="" id="" />
+		</div>
+		
+		
+		<table border="1px" height="300px" width="300px" cellspacing="0">
+			<tr>
+				<td width="100px"></td>
+				<td width="100px"></td>
+				<td width="100px"></td>
+			</tr>
+			<tr>
+				<td>11</td>
+				<td>22</td>
+				<td>33</td>
+			</tr>
+			<tr>
+				<td>44</td>
+				<td>55</td>
+				<td>66</td>
+			</tr>
+		
+		</table>
+		
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
