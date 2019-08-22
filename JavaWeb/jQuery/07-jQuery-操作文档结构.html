@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+	<head>
+		<title>07 jQuery 操作文档结构</title>
+		<meta charset="utf8" />
+		<script src="js/jquery-1.9.1.js" charset="utf8" type="text/javascript"></script>
+		
+		<!--
+			获取元素对象
+				1. 内部插入
+					elem.append("content") 将html内容追加到elem后
+						通常与 $("p").empty(); 联合使用
+					elem.appendTo(元素对象或选择器)  // 将elem追加到 元素对象或选择器。一次性的。
+					elem.prepend("x");
+					elem.prependTo();
+					
+				2. 外部插入
+					e1.after(e2) 将e2追加到e1后面
+					e1.before(e2) 把e2放到 e1的前面
+					$("#u1").insertAfter(div); 把#u1内容 插入到div后面。（重新排列）
+					.insertBefore()
+				3. 包裹
+				4. 替换
+				5. 删除
+					.empty()
+				
+		-->
+		
+		<script type="text/javascript">
+		
+			function testAppend() {
+				var div = $("#showdiv");
+				div.append("<i>内容是什么？</i>");
+			}
+			
+			function testAppendTo(){
+				var div = $("#showdiv");
+				$("#u1").appendTo(div);
+			}
+			
+			function testPrepend() {
+				var div = $("#showdiv");
+				div.prepend("<i>前置内容是什么？</i>");
+				
+			}
+			
+			function testAfter() {
+				var div = $("#showdiv");
+				div.after("<b>外部after内容</b>");
+			}
+			
+			function testBefore() {
+				var div = $("#showdiv");
+				div.before("<b>外部before内容</b>");
+			}
+			
+			function testInsertAfter(){
+				var div = $("#showdiv");
+				$("#u1").insertAfter(div);
+			}
+			
+			function testEmpty() {
+				var div = $("#showdiv");
+				div.empty();
+			}
+			
+		</script>
+		
+		<style type="text/css">
+			#showdiv {
+				width: 300px;
+				height: 300px;
+				border: solid 3px orange;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<h3>07 jQuery 操作文档结构</h3>
+		<input type="button" value="testAppend" onclick="testAppend();" />
+		<input type="button" value="testAppendTo" onclick="testAppendTo();" />
+		<input type="button" value="testPrepend" onclick="testPrepend();" />
+		<input type="button" value="testAfter" onclick="testAfter();" />
+		<input type="button" value="testBefore" onclick="testBefore();" />
+		<input type="button" value="testInsertAfter" onclick="testInsertAfter();" />
+		<input type="button" value="testEmpty" onclick="testEmpty();" />
+		<hr/>
+		<u id="u1">好好学习</u>
+		
+		<div id="showdiv">
+			<b>这里有内容。</b>
+		</div>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

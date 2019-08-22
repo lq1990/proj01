@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<title>09 jQuery 动画</title>
+		<meta charset="utf8"  />
+		<script src="js/jquery-1.9.1.js" charset="utf8" type="text/javascript" ></script>
+		
+		<script type="text/javascript">
+			function test(){
+				$("#showdiv").show(1000);
+				$("#div01").hide(1000);
+				//$("#showdiv").hide(3000);
+				//$("#div01").show(3000);
+				$("div").toggle(1000);
+					
+				$("#showdiv").slideDown(1000);
+				$("#div01").slideUp(1000);
+				
+				$("#showdiv").fadeOut(100);
+			}
+			
+		</script>
+		
+		<style type="text/css">
+			#showdiv {
+					height: 300px;
+					background-color: #44d39f;
+					display: none;
+				}
+				
+			#div01 {
+				height: 300px;
+				background-color: #f66;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<h3>09 jQuery 动画</h3>
+		<input type="button" value="test" onclick="test();" />
+		<hr/>
+		
+		<div id="showdiv">
+			
+		</div>
+		
+		<div id="div01"></div>
+	</body>
+</html>
+
+
+
+
+
+
+
+

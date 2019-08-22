@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+	<head>
+		<title>08 jQuery 事件机制</title>
+		<meta charset="utf8" />
+		<script src="js/jquery-1.9.1.js" charset="utf8" type="text/javascript" ></script>
+		
+		<!--
+			jQuery动态操作事件：
+				元素对象.bind("事件名", fn); // 动态的给指定的元素对象追加指定的事件及其监听的函数。
+					注意：
+						js中的是一次添加，多次添加时覆盖的效果。
+						jQuery是追加的效果，可以实现给一个事件添加不同的监听函数。
+				元素对象.unbind("事件名") // 解绑
+					注意：js方式添加的事件不能被 jQuery的unbind解绑。
+				元素对象.one("事件名", fn) // 绑定one事件，事件触发一次即失效。
+					可由unbind解绑。
+					
+				页面载入事件：
+					$(document).ready(fn);
+						页面载入成功后会调用传入的fn。
+					注意：
+						此方式可以给页面载入动态的增加多个函数对象，不被覆盖。
+				
+		-->
+		
+		<script type="text/javascript">
+		
+			// js
+			function testThing(){
+				var btn = document.getElementById("btn");
+				
+				//  动态改变事件
+				btn.onclick = function(){ // 会覆盖，故一次只能一个事件。
+					console.log("i am js");
+				}
+			}
+			
+			// jQuery
+			function testBind(){
+				$("#btn2").bind("click", function(){ // 事件追加。可以一次绑定多个事件。
+					console.log("通过jQuery绑定事件");
+				});
+				$("#btn2").bind("click", function(){ // 事件追加。可以一次绑定多个事件。
+					console.log("通过jQuery绑定事件2");
+				});
+			}
+			
+			function testUnBind(){
+				$("#btn2").unbind("click");
+			}
+			
+			function testOne(){
+				$("#btn3").one("click", function(){
+					console.log("one");
+				});
+			}
+			
+			// 页面载入事件
+				// js方式
+				window.onload = function(){
+					console.log("js,onload");
+				}
+				window.onload = function(){
+					console.log("js,onload2"); // 会覆盖
+				}
+				
+				// jQuery方式
+				$(document).ready(function(){
+					console.log("i am jQuery onload");
+				});
+				$(document).ready(function(){
+					console.log("i am jQuery onload2"); // 不会被覆盖
+				});
+			
+		</script>
+	</head>
+	
+	<body>
+		<h3>08 jQuery 事件机制</h3>
+		<input type="button" value="testThing" onclick="testThing();" />
+		<input type="button" value="testBind" onclick="testBind();" />
+		<input type="button" value="testUnBind" onclick="testUnBind();" />
+		<input type="button" value="testOne" onclick="testOne();" />
+		<hr/>
+		<input  type="button" name="" id="btn" value="testjs" />
+		<input  type="button" name="btn2" id="btn2" value="测试jQuery绑定事件" />
+		<input  type="button" name="btn3" id="btn3" value="testOne" />
+		
+	</body>
+</html>
+
+
+
+
+
+
+
+
+

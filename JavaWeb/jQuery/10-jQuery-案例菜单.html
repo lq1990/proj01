@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+	<head>
+		<title>10 jQuery 案例 菜单</title>
+		<meta charset="utf8" />
+		<script src="js/jquery-1.9.1.js" charset="utf8" type="text/javascript" ></script>
+		
+		<script type="text/javascript">
+			var flag = false;
+			
+			function testNa(){
+				if(flag) {
+					$("#na").slideUp(300);
+					$("#naImg").attr("src", "img/dog1.jpg");
+					flag = !flag;
+				} else {
+					$("#na").slideDown(300);
+					$("#naImg").attr("src", "img/flag.png");
+					flag = !flag;
+				}
+			}
+			
+			// 页面载入
+			//$(document).ready(function(){});
+			// 使用纯jQ方式，事件也是动态绑定。
+				// 优点：动态效果，与html css无关。也方便后期业务修改。
+			$(function(){
+				$("ul>label").bind("mouseover", function(){
+					$("#na").slideDown(300);
+					$("#naImg").attr("src", "img/open.jpg");
+				});
+				
+				$("ul>label").bind("mouseout", function(){
+					$("#na").slideUp(300);
+					$("#naImg").attr("src", "img/close.jpg");
+				});
+				
+			});
+			
+				
+		</script>
+		
+		<style type="text/css">
+			img {
+				width: 30px;
+				height: 30px;
+			}
+			
+			ul li {
+				list-style-type: none;
+			}
+			
+			#na {
+				position: relative;
+				left: 20px;
+			}
+			
+			
+		</style>
+	</head>
+	
+	<body>
+		<h3>jQuery 菜单案例</h3>
+		<hr/>
+		
+		<ul>
+			<img src="img/close.jpg" id="naImg" />&nbsp;<label for="naImg">国际动态</label>
+			<div id="na" style="display: none;">
+				<li><img src="img/mine.png" /><label for ="" >国内新闻</label></li>
+				<li><img src="img/mine.png" /><label for ="" >国际新闻</label></li>
+			</div>
+		</ul>
+		
+	</body>
+</html>
