@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <!-- 配置Servlet -->
+	<!-- 配置servlet类路径 -->  
+	<servlet>
+		<servlet-name>my</servlet-name>
+		<servlet-class>com.wendao.servlet.MyServlet</servlet-class>
+	</servlet>
+	
+	<!-- 配置访问方式 -->
+	<servlet-mapping>
+		<servlet-name>my</servlet-name> <!-- 注意此处name和 上面servlet配置的name要一致 -->
+		<url-pattern>/my</url-pattern>
+	</servlet-mapping>
+  
+  <!-- 配置Servlet2 -->
+  	<servlet>
+  		<servlet-name>my2</servlet-name>
+  		<servlet-class>com.wendao.servlet.MyServlet2</servlet-class>
+  	</servlet>
+  	
+  	
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ServletLife</servlet-name>
+    <servlet-class>com.wendao.servlet.ServletLife</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ServletMethod</servlet-name>
+    <servlet-class>com.wendao.servlet.ServletMethod</servlet-class>
+  </servlet>
+
+
+  	<servlet-mapping>
+  		<servlet-name>my2</servlet-name>
+  		<url-pattern>/my2</url-pattern>
+  	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletLife</servlet-name>
+    <url-pattern>/life</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ServletMethod</servlet-name>
+    <url-pattern>/method</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
