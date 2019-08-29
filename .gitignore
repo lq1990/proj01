@@ -6,3 +6,8 @@ myCommonsIO/
 *.jpeg
 *.png
 img/
+download/
+images/
+editor/
+themes/
+
