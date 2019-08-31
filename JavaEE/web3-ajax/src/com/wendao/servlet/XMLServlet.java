@@ -21,7 +21,7 @@ public class XMLServlet extends HttpServlet {
 			// req
 			
 			
-			// resp
+			// resp. write的是xml，意味着需要把User对象数据转为xml
 			resp.getWriter().write("<user>"
 					+ "<uid>1</uid>"
 					+ "<uname>xml</uname>"

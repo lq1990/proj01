@@ -51,7 +51,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 			
 			// open, send
-			ajax.open("get", "xml");
+			ajax.open("get", "xml.jsp"); 
+			// xml.jsp内容是xml，在当前文件内 ajax.responseXML可以拿到响应的xml内容
 			ajax.send(null);
 			
 		}

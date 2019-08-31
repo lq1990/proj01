@@ -27,6 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	<script src="js/ajaxUtil.js" charset="utf-8" type="text/javascript"></script>
 	<script type="text/javascript">
 			function getData() {
 				// get userdata
@@ -92,6 +93,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 			}
 	
+			function getData2() {
+				var uname = document.getElementById("uname").value;
+				var data = "uname="+uname;
+				myAjax("get", "user", data, function(ajax) {
+					// status == 200
+					// get result
+					var result = ajax.responseText;
+					eval("var u = "+result);
+					console.log(u);
+					
+					// dom
+					var ta = document.getElementById("ta");
+					ta.innerHTML = "";
+					
+					var tr0 = ta.insertRow(0);
+					var c0 = tr0.insertCell(0);
+					var c1 = tr0.insertCell(1);
+					var c2 = tr0.insertCell(2);
+					var c3 = tr0.insertCell(3);
+					var c4 = tr0.insertCell(4);
+					c0.innerHTML = "编号";
+					c1.innerHTML = "姓名";
+					c2.innerHTML = "价格";
+					c3.innerHTML = "位置";
+					c4.innerHTML = "简介";
+					
+					var tr1 = ta.insertRow(1);
+					var c0 = tr1.insertCell(0);
+					var c1 = tr1.insertCell(1);
+					var c2 = tr1.insertCell(2);
+					var c3 = tr1.insertCell(3);
+					var c4 = tr1.insertCell(4);
+					c0.innerHTML = u.uid;
+					c1.innerHTML = u.uname;
+					c2.innerHTML = u.price;
+					c3.innerHTML = u.loc;
+					c4.innerHTML = u.des;
+					
+					
+				});
+				
+				alert("haha");
+			}
 	</script>
 
   </head>
@@ -100,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <h3>欢迎访问英雄商店</h3>
     <hr/>
    	英雄名称：<input type="text" name="uname" value="" id="uname" />
-   			<input type="button" value="search" onclick="getData()" />
+   			<input type="button" value="search" onclick="getData2()" />
    	<hr/>
    	
    	<table id="ta" border="1px" cellspacing="0px">
