@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+ 
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>show</servlet-name>
+    <servlet-class>com.wendao.servlet.ShowServlet</servlet-class>
+  </servlet>
+
+  <!-- tomcat7+, web3.0+ 以上项目中可在 Servlet中注解配置url -->
+  <servlet-mapping>
+    <servlet-name>show</servlet-name>
+    <url-pattern>/show</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>show</servlet-name>
+    <url-pattern>/show1</url-pattern>
+  </servlet-mapping>
+
+</web-app>
