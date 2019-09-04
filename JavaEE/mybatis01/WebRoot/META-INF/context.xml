@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!-- The contents of this file will be loaded for each web application -->
+<Context>
+	<Resource 
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/ssm"
+		username="root"
+		password="123456"
+		maxActive="50"
+		maxIdle="20"
+		name="test"
+		auth="Container"
+		maxWait="10000"
+		type="javax.sql.DataSource"
+	/>
+	<!-- 
+		配置了当前项目的数据库连接池
+		本 META-INF/context.xml文件由tomcat自动加载和管理. 
+		
+		auth: 由谁管理，Container是tomcat
+		maxWait [ms]，超过后报系统异常
+		type的 javax.sql.DataSource是 数据库连接对象
+	 -->
+	
+</Context>

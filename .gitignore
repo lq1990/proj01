@@ -5,6 +5,7 @@ myCommonsIO/
 *.jpg
 *.jpeg
 *.png
+*.pdf
 img/
 download/
 images/

@@ -1,0 +1,69 @@
+0    [main] DEBUG org.apache.ibatis.logging.LogFactory  - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+75   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+77   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+77   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+77   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+132  [main] DEBUG com.wendao.test.TestMyBatis  - 这是一个调试信息
+133  [main] INFO  com.wendao.test.TestMyBatis  - 这是一个info信息
+0    [main] DEBUG org.apache.ibatis.logging.LogFactory  - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+84   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+86   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+86   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+86   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+139  [main] DEBUG com.wendao.test.TestMyBatis  - 这是一个调试信息
+140  [main] INFO  com.wendao.test.TestMyBatis  - 这是一个info信息
+0    [main] DEBUG org.apache.ibatis.logging.LogFactory  - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+75   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+77   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+77   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+77   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+134  [main] DEBUG com.wendao.test.TestMyBatis  - 这是一个调试信息
+134  [main] INFO  com.wendao.test.TestMyBatis  - 这是一个info信息
+0    [main] DEBUG org.apache.ibatis.logging.LogFactory  - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+78   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+80   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+80   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+80   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+134  [main] DEBUG com.wendao.test.TestMyBatis  - 这是一个调试信息
+135  [main] INFO  com.wendao.test.TestMyBatis  - 这是一个info信息
+135  [main] ERROR com.wendao.test.TestMyBatis  - 5/0
+0    [main] DEBUG org.apache.ibatis.logging.LogFactory  - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+80   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+81   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+82   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+82   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+137  [main] DEBUG com.wendao.test.TestMyBatis  - 这是一个调试信息
+138  [main] INFO  com.wendao.test.TestMyBatis  - 这是一个info信息
+138  [main] ERROR com.wendao.test.TestMyBatis  - 5/0
+0    [main] DEBUG org.apache.ibatis.logging.LogFactory  - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+80   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+83   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+83   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+83   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+144  [main] DEBUG com.wendao.test.TestMyBatis  - 这是一个调试信息
+144  [main] INFO  com.wendao.test.TestMyBatis  - 这是一个info信息
+144  [main] ERROR com.wendao.test.TestMyBatis  - / by zero
+0    [main] DEBUG org.apache.ibatis.logging.LogFactory  - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+75   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+77   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+77   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+77   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+135  [main] DEBUG com.wendao.test.TestMyBatis  - 这是一个调试信息
+135  [main] INFO  com.wendao.test.TestMyBatis  - 这是一个info信息
+135  [main] ERROR com.wendao.test.TestMyBatis  - / by zero
+0    [main] DEBUG org.apache.ibatis.logging.LogFactory  - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+75   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+77   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+77   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+77   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+132  [main] DEBUG com.wendao.test.TestMyBatis  - 这是一个调试信息
+132  [main] INFO  com.wendao.test.TestMyBatis  - 这是一个info信息
+132  [main] ERROR com.wendao.test.TestMyBatis  - / by zero
+0    [main] DEBUG org.apache.ibatis.logging.LogFactory  - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+76   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+77   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+78   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+78   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+129  [main] DEBUG com.wendao.test.TestMyBatis  - 这是一个调试信息
+129  [main] INFO  com.wendao.test.TestMyBatis  - 这是一个info信息
+130  [main] ERROR com.wendao.test.TestMyBatis  - / by zero

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	mapper文件是使用MyBatis时主要手写的部分。
+
+	dao的实现类不用自己写。
+	此FlowerMapper.xml 文件理解为：dao.impl 中的实现类。
+	
+	
+	package com.wendao.dao.impl.FlowerMapper
+	public class FlowerMapper {
+		List<Flower> selAll() {
+		
+		}
+	}
+
+ -->
+
+<!-- namespace理解为实现类 的全路径（包名+类名） -->
+<mapper namespace="com.wendao.FlowerMapper">
+	<!-- 
+		id是方法名
+		parameterType: 定义参数类型。此方法没有，故不写。
+		resultType: 返回值类型，
+			注意：当 List<Flower> selAll() {} 即返回值是list时，在resultType中写List的泛型，
+				  因为mybatis对jdbc封装，一行一行读取数据. （原因：jdbc rs中cursor每次指向一行，一行的数据类型）
+				
+	 -->
+	<!-- select 内部写sql
+	 -->
+	<select id="selAll" resultType="com.wendao.pojo.Flower" >
+		select id,name,price,production from flower
+	</select>
+	
+	<select id="selById" resultType="int">
+		select count(*) from flower
+	</select>
+	
+	<select id="c" resultType="com.wendao.pojo.Flower" >
+		select * from flower
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
