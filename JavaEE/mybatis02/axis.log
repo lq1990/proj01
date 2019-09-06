@@ -1,0 +1,151 @@
+0    [main] DEBUG org.apache.ibatis.logging.LogFactory  - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+74   [main] DEBUG org.apache.ibatis.logging.LogFactory  - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+90   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+90   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+90   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+90   [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - PooledDataSource forcefully closed/removed all connections.
+163  [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction  - Opening JDBC Connection
+394  [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - Created connection 1836797772.
+395  [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction  - Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@6d7b4f4c]
+397  [main] DEBUG a.b.c  - ==>  Preparing: select * from people 
+424  [main] DEBUG a.b.c  - ==> Parameters: 
+436  [main] DEBUG a.b.c  - <==      Total: 2
+436  [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction  - Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@6d7b4f4c]
+437  [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction  - Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@6d7b4f4c]
+437  [main] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource  - Returned connection 1836797772 to pool.
+0    [main] DEBUG a.b.c  - ==>  Preparing: select * from people 
+30   [main] DEBUG a.b.c  - ==> Parameters: 
+49   [main] DEBUG a.b.c  - <==      Total: 2
+0    [main] DEBUG a.b.c  - ==>  Preparing: select * from people 
+33   [main] DEBUG a.b.c  - ==> Parameters: 
+49   [main] DEBUG a.b.c  - <==      Total: 4
+0    [main] DEBUG a.b.c  - ==>  Preparing: select * from people 
+28   [main] DEBUG a.b.c  - ==> Parameters: 
+44   [main] DEBUG a.b.c  - <==      Total: 4
+44   [main] DEBUG a.b.d  - ==>  Preparing: select * from people where id=3 or id=4 
+45   [main] DEBUG a.b.d  - ==> Parameters: 
+46   [main] DEBUG a.b.d  - <==      Total: 2
+0    [main] DEBUG a.b.c  - ==>  Preparing: select * from people 
+36   [main] DEBUG a.b.c  - ==> Parameters: 
+54   [main] DEBUG a.b.c  - <==      Total: 4
+55   [main] DEBUG a.b.d  - ==>  Preparing: select * from people where id=3 or id=4 
+55   [main] DEBUG a.b.d  - ==> Parameters: 
+57   [main] DEBUG a.b.d  - <==      Total: 2
+0    [main] DEBUG a.b.c  - ==>  Preparing: select * from people 
+30   [main] DEBUG a.b.c  - ==> Parameters: 
+45   [main] DEBUG a.b.c  - <==      Total: 4
+45   [main] DEBUG a.b.d  - ==>  Preparing: select * from people where id=3 or id=4 
+46   [main] DEBUG a.b.d  - ==> Parameters: 
+47   [main] DEBUG a.b.d  - <==      Total: 2
+0    [main] DEBUG a.b.c  - ==>  Preparing: select * from people 
+29   [main] DEBUG a.b.c  - ==> Parameters: 
+45   [main] DEBUG a.b.c  - <==      Total: 4
+46   [main] DEBUG a.b.d  - ==>  Preparing: select * from people where id=3 or id=4 
+47   [main] DEBUG a.b.d  - ==> Parameters: 
+48   [main] DEBUG a.b.d  - <==      Total: 2
+48   [main] DEBUG a.j.c  - ==>  Preparing: select * from people 
+48   [main] DEBUG a.j.c  - ==> Parameters: 
+50   [main] DEBUG a.j.c  - <==      Total: 4
+51   [main] DEBUG a.j.d  - ==>  Preparing: select * from people where id=3 or id=4 
+51   [main] DEBUG a.j.d  - ==> Parameters: 
+52   [main] DEBUG a.j.d  - <==      Total: 2
+0    [main] DEBUG com.wendao.PeopleMapper.fn1  - ==>  Preparing: select * from people 
+31   [main] DEBUG com.wendao.PeopleMapper.fn1  - ==> Parameters: 
+50   [main] DEBUG com.wendao.PeopleMapper.fn1  - <==      Total: 4
+51   [main] DEBUG com.wendao.PeopleMapper.fn2  - ==>  Preparing: select * from people where id=3 or id=4 
+51   [main] DEBUG com.wendao.PeopleMapper.fn2  - ==> Parameters: 
+53   [main] DEBUG com.wendao.PeopleMapper.fn2  - <==      Total: 2
+54   [main] DEBUG com.wendao.PeopleMapper2.fn1  - ==>  Preparing: select * from people 
+54   [main] DEBUG com.wendao.PeopleMapper2.fn1  - ==> Parameters: 
+56   [main] DEBUG com.wendao.PeopleMapper2.fn1  - <==      Total: 4
+56   [main] DEBUG com.wendao.PeopleMapper2.fn2  - ==>  Preparing: select * from people where id=3 or id=4 
+56   [main] DEBUG com.wendao.PeopleMapper2.fn2  - ==> Parameters: 
+58   [main] DEBUG com.wendao.PeopleMapper2.fn2  - <==      Total: 2
+0    [main] DEBUG a.b.selById  - ==>  Preparing: select * from people where id=? 
+26   [main] DEBUG a.b.selById  - ==> Parameters: 2(Integer)
+38   [main] DEBUG a.b.selById  - <==      Total: 1
+0    [main] DEBUG a.b.selById  - ==>  Preparing: select * from people where id=? 
+25   [main] DEBUG a.b.selById  - ==> Parameters: 2(Integer)
+39   [main] DEBUG a.b.selById  - <==      Total: 1
+0    [main] DEBUG a.b.selById  - ==>  Preparing: select * from people where id=1 
+27   [main] DEBUG a.b.selById  - ==> Parameters: 
+42   [main] DEBUG a.b.selById  - <==      Total: 1
+1    [main] DEBUG a.b.selById  - ==>  Preparing: select * from people where id=0 
+66   [main] DEBUG a.b.selById  - ==> Parameters: 
+84   [main] DEBUG a.b.selById  - <==      Total: 0
+0    [main] DEBUG a.b.selById  - ==>  Preparing: select * from people where id=1 
+29   [main] DEBUG a.b.selById  - ==> Parameters: 
+43   [main] DEBUG a.b.selById  - <==      Total: 1
+0    [main] DEBUG a.b.selById  - ==>  Preparing: select * from people where id=3 
+54   [main] DEBUG a.b.selById  - ==> Parameters: 
+78   [main] DEBUG a.b.selById  - <==      Total: 1
+0    [main] DEBUG a.b.selById  - ==>  Preparing: select * from people where id=? and name=? 
+27   [main] DEBUG a.b.selById  - ==> Parameters: 2(Integer), 王也(String)
+40   [main] DEBUG a.b.selById  - <==      Total: 1
+0    [main] DEBUG a.b.selById  - ==>  Preparing: select * from people where id=? and name=? 
+29   [main] DEBUG a.b.selById  - ==> Parameters: 1(Integer), 王也(String)
+44   [main] DEBUG a.b.selById  - <==      Total: 0
+0    [main] DEBUG a.b.selById  - ==>  Preparing: select * from people where id=? and name=? 
+26   [main] DEBUG a.b.selById  - ==> Parameters: 2(Integer), 王也(String)
+38   [main] DEBUG a.b.selById  - <==      Total: 1
+0    [main] DEBUG a.b.test  - ==>  Preparing: select * from people where id<? 
+25   [main] DEBUG a.b.test  - ==> Parameters: 3(Integer)
+37   [main] DEBUG a.b.test  - <==      Total: 2
+0    [main] DEBUG a.b.test  - ==>  Preparing: select * from people where id<? 
+30   [main] DEBUG a.b.test  - ==> Parameters: null
+41   [main] DEBUG a.b.test  - <==      Total: 0
+41   [main] DEBUG a.b.page  - ==>  Preparing: select * from people limit ?,? 
+42   [main] DEBUG a.b.page  - ==> Parameters: 1(Integer), 2(Integer)
+0    [main] DEBUG a.b.page  - ==>  Preparing: select * from people limit ?,? 
+31   [main] DEBUG a.b.page  - ==> Parameters: 1(Integer), 2(Integer)
+0    [main] DEBUG a.b.page  - ==>  Preparing: select * from people limit ?,? 
+30   [main] DEBUG a.b.page  - ==> Parameters: 1(Integer), 2(Integer)
+44   [main] DEBUG a.b.page  - <==      Total: 2
+0    [main] DEBUG a.b.page  - ==>  Preparing: select * from people limit ?,? 
+29   [main] DEBUG a.b.page  - ==> Parameters: 0(Integer), 2(Integer)
+45   [main] DEBUG a.b.page  - <==      Total: 2
+0    [main] DEBUG a.b.page  - ==>  Preparing: select * from people limit ?,? 
+29   [main] DEBUG a.b.page  - ==> Parameters: 3(Integer), 3(Integer)
+44   [main] DEBUG a.b.page  - <==      Total: 3
+0    [main] DEBUG a.b.page  - ==>  Preparing: select * from people limit ?,? 
+29   [main] DEBUG a.b.page  - ==> Parameters: 3(Integer), 3(Integer)
+42   [main] DEBUG a.b.page  - <==      Total: 3
+0    [main] DEBUG a.b.page  - ==>  Preparing: select * from people limit ?,? 
+24   [main] DEBUG a.b.page  - ==> Parameters: 3(Integer), 3(Integer)
+37   [main] DEBUG a.b.page  - <==      Total: 3
+0    [main] DEBUG a.b.sel1  - ==>  Preparing: select * from people where id=1 
+27   [main] DEBUG a.b.sel1  - ==> Parameters: 
+41   [main] DEBUG a.b.sel1  - <==      Total: 1
+0    [main] DEBUG a.b.sel1  - ==>  Preparing: select * from people where id=10 
+29   [main] DEBUG a.b.sel1  - ==> Parameters: 
+44   [main] DEBUG a.b.sel1  - <==      Total: 1
+0    [main] DEBUG a.b.ins  - ==>  Preparing: insert into people values (default,?,?) 
+28   [main] DEBUG a.b.ins  - ==> Parameters: 王也2(String), 16(Integer)
+31   [main] DEBUG a.b.ins  - <==    Updates: 1
+0    [main] DEBUG a.b.ins  - ==>  Preparing: insert into people values (default,?,?) 
+29   [main] DEBUG a.b.ins  - ==> Parameters: 司马也(String), 11(Integer)
+31   [main] DEBUG a.b.ins  - <==    Updates: 1
+0    [main] DEBUG a.b.ins  - ==>  Preparing: insert into people values (default,?,?) 
+23   [main] DEBUG a.b.ins  - ==> Parameters: 司马也2(String), 11(Integer)
+30   [main] DEBUG a.b.ins  - <==    Updates: 1
+1    [main] DEBUG a.b.ins  - ==>  Preparing: insert into people values (default,?,?) 
+26   [main] DEBUG a.b.ins  - ==> Parameters: 司马也2(String), 11(Integer)
+34   [main] DEBUG a.b.ins  - <==    Updates: 1
+0    [main] DEBUG a.b.ins  - ==>  Preparing: insert into people values (default,?,?) 
+27   [main] DEBUG a.b.ins  - ==> Parameters: 司马也3(String), 11(Integer)
+29   [main] DEBUG a.b.ins  - <==    Updates: 1
+0    [main] DEBUG a.b.ins  - ==>  Preparing: insert into people values (default,?,?) 
+29   [main] DEBUG a.b.ins  - ==> Parameters: 司马也3(String), 11(Integer)
+32   [main] DEBUG a.b.ins  - <==    Updates: 1
+33   [main] DEBUG a.b.ins  - ==>  Preparing: insert into people values (default,?,?) 
+33   [main] DEBUG a.b.ins  - ==> Parameters: 司马也32jjjjjdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(String), 12(Integer)
+0    [main] DEBUG a.b.ins  - ==>  Preparing: insert into people values (default,?,?) 
+2393 [main] DEBUG a.b.ins  - ==> Parameters: 司马也3(String), 11(Integer)
+2408 [main] DEBUG a.b.ins  - <==    Updates: 1
+14802 [main] DEBUG a.b.ins  - ==>  Preparing: insert into people values (default,?,?) 
+14812 [main] DEBUG a.b.ins  - ==> Parameters: 司马也32jjjjjdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(String), 12(Integer)
+0    [main] DEBUG a.b.ins  - ==>  Preparing: insert into people values (default,?,?) 
+25   [main] DEBUG a.b.ins  - ==> Parameters: 司马也3(String), 11(Integer)
+28   [main] DEBUG a.b.ins  - <==    Updates: 1
+29   [main] DEBUG a.b.ins  - ==>  Preparing: insert into people values (default,?,?) 
+29   [main] DEBUG a.b.ins  - ==> Parameters: 司马也32jjjjjdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa(String), 12(Integer)

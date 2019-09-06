@@ -5,8 +5,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 <mapper namespace="a.b">
-	<select id="">
-		
-		
+	<select id="fn1"  resultType="com.wendao.pojo.People">
+		select * from people
 	</select>
+	
+	<select id="fn2" resultType="com.wendao.pojo.People">
+		select * from people where id=3 or id=4
+	</select>
+	
+	<select id="selById" resultType="com.wendao.pojo.People" 
+		parameterType="map">
+		select * from people where id=#{id} and name=#{name}
+	</select>
+	
+	<select id="sel1" resultType="People" parameterType="People">
+		select * from people where id=${10}
+	</select>
+	
+	<select id="test" resultType="com.wendao.pojo.People" parameterType="int">
+		<![CDATA[ select * from people where id<#{0} ]]>
+	</select>
+	
+	<select id="page" resultType="People" parameterType="map">
+		select * from people limit #{pageStart},#{pageSize}
+	</select>
+	
+	<insert id="ins" parameterType="People">
+		insert into people values (default,#{name},#{age})
+	</insert>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

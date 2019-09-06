@@ -3,7 +3,21 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
+<!-- 全局配置文件 -->
+<!-- 鼠标悬停在 configuration上可知各种标签应书写顺序 -->
 <configuration>
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+	</settings>
+	
+	<typeAliases>
+		<!-- 
+			 <typeAlias type="com.wendao.pojo.People" alias="peo"/>
+		 -->
+		<package name="com.wendao.pojo" /> 
+		<!-- 写了后，在PeopleMapper.xml中 com.wendao.pojo.People 可简写为People -->
+	</typeAliases>
+
 	<environments default="def">
 		<environment id="def">
 			<transactionManager type="JDBC"></transactionManager>
@@ -15,7 +29,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			</dataSource>
 		</environment>
 	</environments>
+	
 	<mappers>
 		<mapper resource="com/wendao/mapper/PeopleMapper.xml"/>
+		<mapper resource="com/wendao/mapper/PeopleMapper2.xml"/>
 	</mappers>
 </configuration>

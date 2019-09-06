@@ -12,3 +12,6 @@ images/
 editor/
 themes/
 
+
+*.zip
+lib/

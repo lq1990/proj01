@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wendao.mapper.AccountMapper">
+
+	<!-- 根据账号和密码，查询账户信息 -->
+	<select id="selByAccnoPwd" resultType="Account" parameterType="Account">
+		select * from account where accno=#{accno} and password=#{password}
+	</select>
+	
+	<!-- 根据账号和 (收款人)姓名 查询账户信息 -->
+	<select id="selByAccnoName" resultType="Account" parameterType="Account">
+		select * from account where accno=#{accno} and name=#{name}
+	</select>
+	
+	<!-- 根据 accno 修改账户余额 -->
+	<update id="updBalanceByAccno" parameterType="Account">
+		update account set balance=balance+#{balance} where accno=#{accno}
+	</update>
+	<!-- 注意：update语句中的balance是db列对应的值，#{balance}的值是要增减的值
+		字面上容易混淆，最好把#{balance}改名为 #{money}
+	 -->
+	
+</mapper>

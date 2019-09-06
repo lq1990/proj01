@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 接口绑定方案
+	此xml相当于时 接口的实现类。
+	注意：方法名id匹配
+ -->
+
+<mapper namespace="com.wendao.mapper.LogMapper">
+
+	<select id="selAll" resultType="Log">
+		select * from log
+	</select>
+	
+	
+	<!-- 当多参数时，不需要写 parameterType。
+		可以直接#{index of args} eg. #{0}
+		或者
+		当 List<Log> selByAccInAccOut(@Param("accin") String accin, @Param("accout") String accout);
+			已经有注解时，可以#{accin}	
+	 -->
+	<select id="selByAccInAccOut1" resultType="Log">
+		select * from log where 1=1
+		
+		<!-- 动态SQL -->
+		<!-- OGNL表达式，test中 直接写key或对象的属性，不需要添加任何特殊字符 -->
+		<if test="accin != null and accin != ''">
+			and accin=#{accin}
+		</if>
+		
+		<if test="accout != null and accout != ''">
+			and accout=#{accout}
+		</if>
+		
+	</select>
+	
+	<select id="selByAccInAccOut2" resultType="Log">
+		select * from log
+		<where>
+			<if test="accin != null and accin != ''">
+				and accin=#{accin}
+			</if>
+		
+			<if test="accout != null and accout != ''">
+				and accout=#{accout}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selByAccInAccOut" resultType="Log">
+		select * from log
+		<where>
+			<choose>
+				<!-- choose/when/when 多个when只有一个有效 -->
+				<when test="accin != null and accin != ''">
+					and accin=#{accin}
+				</when>
+			
+				<when test="accout != null and accout != ''">
+					and accout=#{accout}
+				</when>
+			</choose>
+		</where>
+	</select>
+	
+	
+	<update id="upd1" parameterType="Log">
+		update log
+		<set>
+			id=#{id}, <!-- 此行可以 防止语法错误。因为当下面所有if都不走的话且此行也不写 则set关键字不生成 -->
+			<if test="accIn != null and accIn != ''">
+				accin=#{accIn},
+			</if>
+			
+			<if test="accOut != null and accOut != ''">
+				accout=#{accOut},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	
+	<update id="upd" parameterType="Log">
+		update log
+		<trim prefix="set" suffixOverrides=",">
+			money=#{money},
+		</trim>
+		where id=6
+		
+	</update>
+	
+	<select id="selByLog1" resultType="Log" parameterType="Log">
+		select * from log
+		
+		<!-- 先去，后加 -->
+		<trim prefix="where" prefixOverrides="and">
+			and accin=#{accIn}
+		</trim>
+	</select>
+	
+	
+	
+	
+	
+	<select id="selByLog" resultType="Log" parameterType="Log">
+		<!-- 传过来到money值，前面用 $拼接上 -->
+		<bind name="money" value="'$'+money"/>
+		#{money}
+	</select>
+	
+	
+	<!-- foreach遍历参数列表， in (,,,) 查询 -->
+	<select id="selIn" parameterType="list" resultType="Log">
+		select * from log where id in
+		<foreach collection="list" item="i" open="(" close=")" separator=",">
+			#{i}
+		</foreach>
+	</select>
+	
+	<!-- foreach 实现批量新增 , values (),(),()-->
+	<insert id="insMany">
+		insert into log values 
+		<foreach collection="list" item="i" open="(" close=")" separator="),(">
+			default, #{i}, 2, 2
+		</foreach>
+	</insert>
+	
+	
+	
+	<select id="selUsingRef" resultType="Log">
+		select <include refid="mysql"></include>
+		from log
+	</select>
+	
+	
+	<!-- 
+		复用。
+		尤其在 多表联合查询时 使用，防止记录名写太多
+		id设置id，其它标签可以引入 
+	 -->
+	<sql id="mysql">
+		id,accin,accout,money
+	</sql>
+	
+	
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
