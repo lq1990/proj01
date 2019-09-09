@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 接口绑定方案
+	此xml相当于时 接口的实现类。
+	注意：方法名id匹配
+ -->
+
+<mapper namespace="com.wendao.mapper.LogMapper">
+	<!-- 设置factory级别的cache，即多个session之间cache共享。
+		设置readOnly="true"，当前namespace中所有查询都放到 二级缓存（factory的缓存）  -->
+	<cache readOnly="true"></cache>
+
+
+
+	<select id="selAll" resultType="Log" statementType="PREPARED">
+		select * from log
+	</select>
+	<!-- 
+		statementType:
+			CALLABLE 调用server端的存储过程（一个fn中有多个sql语句，client只需要请求一个fn名即可）
+			PREPARED (default) 常用的，防止 sql注入
+			STATEMENT 以前常用的
+			
+	 -->
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

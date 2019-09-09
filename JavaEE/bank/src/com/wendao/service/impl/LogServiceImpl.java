@@ -15,6 +15,15 @@ import com.wendao.pojo.Log;
 import com.wendao.pojo.PageInfo;
 import com.wendao.service.LogService;
 
+/**
+ * 	LogServiceImpl提供给控制器：
+ * 		方法：showPage().
+ * 
+ * 	每个service中公共部分：factory创建session，session commit close. 
+ * 		把这些公共部分，放到filter中完成
+ * @author china
+ *
+ */
 public class LogServiceImpl implements LogService {
 
 	@Override
@@ -34,6 +43,7 @@ public class LogServiceImpl implements LogService {
 		System.out.println("pageSize: "+pageSize+", count: "+count+", total: "+total);
 		PageInfo pi = new PageInfo(pageSize, pageNumber, total, list);
 		
+		ss.commit();	
 		ss.close();
 		return pi;
 	}

@@ -18,6 +18,9 @@ import com.wendao.service.AccountService;
 /**	
  * 	ServiceImpl中写 业务。
  * 	而针对db的成为事务。
+ * 
+ * 	此Service提供给控制器：
+ * 	方法：transfer();
  * @author china
  *
  */
