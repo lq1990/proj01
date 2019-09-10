@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.wendao.mapper.StudentMapper">
+ 	
+ 	<!--================= N+1方式，多表查询 =======================-->
+ 	<!-- 在mapper中配置 关联查询时，就不必在业务中 手动再写了 -->
+ 	<resultMap type="student" id="stuMap">
+ 	<!-- 
+ 		<id column="id" property="id"/>
+ 		
+ 		<result column="name" property="name"/>
+ 		<result column="age" property="age"/>
+ 	 -->
+ 		<result column="tid" property="tid"/>
+ 		
+ 		<!-- 若关联一个对象 用 association; 若关联的是一个集合 用collection -->
+ 		<association property="teacher" column="tid"
+ 			select="com.wendao.mapper.TeacherMapper.selById"></association>
+ 		
+ 	</resultMap>
+ 	<select id="selAll" resultMap="stuMap">
+ 		select * from student
+ 	</select>
+ 	
+ 	
+ 	<!--============= Auto Mapping 结合别名，实现多表查询
+ 		会自动 按照别名匹配student的属性
+                涉及到多表的话，t.id 'teacher.id'
+                
+          Auto Mapping对于 集合类型 不可以。
+ 	 ============-->
+ 	<select id="selAll2" resultType="student">
+ 		select t.id 'teacher.id', t.name "teacher.name", 
+		s.id id, s.name name, age, tid
+		from student s left JOIN teacher t on t.id=s.tid
+
+ 	</select>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	<select id="selByTid" parameterType="int" resultType="student">
+ 		select * from student where tid=#{0}
+ 	</select>
+ 	
+ 	
+ 	
+ </mapper>
+ 

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.wendao.mapper.TeacherMapper">
+ 	
+ 	<select id="selAll" resultType="teacher">
+ 		select * from teacher
+ 	</select>
+ 	
+ 	<select id="selById" resultType="teacher" parameterType="int">
+ 		select * from teacher where id=#{0}
+ 	</select>
+ 	
+ 	
+ 	
+ 	
+ 	<!--============  N+1方式，多表查询 ================== -->
+ 	<resultMap type="teacher" id="mymap0">
+ 		<id column="id" property="id"/>
+ 		<result column="name" property="name"/>
+ 		
+ 		<!-- List<Student> list -->
+ 		<collection property="list" 
+ 			ofType="student"
+ 			select="com.wendao.mapper.StudentMapper.selByTid" 
+ 			column="id">
+ 		</collection>
+ 	</resultMap>
+ 	<select id="selAll0" resultMap="mymap0">
+ 		select * from teacher
+ 	</select>
+ 	
+ 	
+ 	
+ 	
+ 	<!--================  联合查询方式，多表查询 ======================-->
+ 	<resultMap type="teacher" id="mymap1">
+ 		<!-- 针对实体类teacher的不同类型属性（
+ 			主键用<id/>，普通用<result/>，集合用<collection/>），
+ 			使用不同的标签.
+ 			
+ 			不同标签中：
+ 				column：指sql语句针对db的
+ 				property: 实体类的属性
+ 			 -->
+ 		<id column="tid" property="id"/>
+ 		
+ 		<result column="tname" property="name"/>
+ 		
+ 		<!-- 联合查询时，需要在collection声明 属性类型 -->
+ 		<collection property="list" 
+ 			ofType="student">
+	 		<!-- collection中ofType是泛型类型。 -->
+ 			<!-- collection内容对应是 泛型即student的属性的说明，即与column的对应关系 -->
+	 		
+ 			<id column="sid" property="id"/> 
+ 			<result column="sname" property="name"/>
+ 			<result column="age" property="age"/>
+ 			<result column="tid" property="tid"/>
+ 		</collection>
+ 			
+ 	</resultMap>
+ 	<select id="selAll1" resultMap="mymap1">
+ 		select t.id tid, t.name tname, s.id sid, s.name sname, age, tid
+		from teacher t left JOIN student s on t.id=s.tid;
+ 	</select>
+ 	
+ 	
+ 	<!-- Auto Mapping实现 多表查询。对于集合类型 不可以 -->
+ 	<select id="selAll2" resultType="teacher">
+ 		
+ 	</select>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ </mapper>
+ 
+ 
