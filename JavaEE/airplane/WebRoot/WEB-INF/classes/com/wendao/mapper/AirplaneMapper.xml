@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.wendao.mapper.AirplaneMapper">
+ 
+ 	<!-- 联合查询方式，需要在 resultMap中指明 
+ 		返回值type：
+ 			各个属性
+ 		 -->
+ 
+ 	<resultMap type="Airplane" id="mp">
+ 		<id column="id" property="id"/>
+ 		<result column="airno" property="airno"/>
+ 		<result column="time" property="time"/>
+ 		<result column="price" property="price"/>
+ 		
+ 		<!-- 联合查询时，需要指明 javaType -->
+ 		<association property="takeport" javaType="airport">
+ 			<id column="takeid" property="id"/>
+ 			<result column="takecityname" property="cityname"/>
+ 			<result column="takeportname" property="portname"/>
+ 		</association>
+ 		<association property="landport" javaType="airport">
+ 			<id column="landid" property="id"/>
+ 			<result column="landcityname" property="cityname"/>
+ 			<result column="landportname" property="portname"/>
+ 		</association>
+ 	</resultMap>
+ 	<select id="selByTakeidLandid" resultMap="mp">
+ 		select plane.id, plane.airno, plane.time, plane.price, 
+ 			takeport.id takeid, takeport.portname takeportname, takeport.cityname takecityname,
+ 			landport.id landid, landport.portname landportname, landport.cityname landcityname
+ 			from airplane plane 
+ 		left join
+ 		airport takeport on plane.takeid=takeport.id
+ 		left join
+ 		airport landport on plane.landid=landport.id
+ 		
+ 		<!-- 动态sql -->
+ 		<where>
+ 			<if test="takeid > 0">
+ 				and takeid=#{takeid}
+ 			</if>
+ 			<if test="landid > 0">
+ 				and landid=#{landid}
+ 			</if>
+ 		</where>
+ 	</select>
+ 	
+ 	
+ </mapper>
+ 
