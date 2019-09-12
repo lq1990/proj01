@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+        <!--====================== 通过构造方法 ==========================-->
+        <!-- 
+        	id 表示获取到对象标识
+        	class 创建哪些类的对象
+        	
+        	在加载此xml配置文件时，bean就被无参构造了
+         -->
+       <bean id="peo" class="com.wendao.pojo.People">
+       		<!-- 
+       			index/type: 第几个参数/type，二选一或都用，以区分参数
+       			value/ref: value对应基本数据类型或String等，ref对应引用另一个bean
+       			
+       		 -->
+       		 
+       		<constructor-arg index="0" type="int" value="123" ></constructor-arg>
+       		<constructor-arg index="1" type="java.lang.String" value="张三" ></constructor-arg>
+       		
+       </bean>      
+   
+   		<!--==================== 实例工厂 ================================-->
+   		<!-- 
+   		<bean id="factory" class="com.wendao.pojo.PeopleFactory"></bean>
+   		<bean id="peo1" factory-bean="factory" factory-method="newInstance"></bean>
+   		 -->
+        
+        
+        <!-- ====================== 静态工厂 ================================ -->
+        <!-- 
+        <bean id="peo2"
+         	class="com.wendao.pojo.PeopleFactory" 
+         	factory-method="newInstance"></bean>
+         -->
+        
+        
+        
+        
+        
+        
+        
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

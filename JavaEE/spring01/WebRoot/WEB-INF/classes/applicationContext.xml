@@ -1,4 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xml-body>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+       <bean id="peo" class="com.wendao.pojo.People">
+       
+	       	<!-- set方法 -->
+	       	 <property name="id">
+	       	 	<value>223</value>
+	       	 </property>
+	       	 <property name="name" value="李四">
+	       	 </property>
+	       	 
+	       	 <property name="sets">
+	       	 	<set>
+	       	 		<!-- 若Set<> 存储对象类型，则用 ref -->
+	       	 		<value>aaa</value> <!-- xml中 aaa默认会被""包裹 -->
+	       	 		<value>ddd</value>
+	       	 		<value>eee</value>
+	       	 	</set>
+	       	 </property>
+	       	 <property name="list">
+	       	 	<list>
+	       	 		<value>1</value>
+	       	 		<value>2</value>
+	       	 		<value>3</value>
+	       	 		<value>4</value>
+	       	 	</list>
+	       	 </property>
+	       	 
+	       	 <property name="strs">
+	       	 	<!-- 报错不要紧
+	       	 	 -->
+	       	 	<array>
+	       	 		<value>1</value>
+	       	 		<value>11</value>
+	       	 		<value>111</value>
+	       	 	</array>
+	       	 </property>
+	       	 
+	       	 <property name="map">
+	       	 	<map>
+	       	 		<entry key="a" value="aaa"></entry>
+	       	 		<entry key="b" value="bbb"></entry>
+	       	 		<entry key="c" value="ccc"></entry>
+	       	 	</map>
+	       	 </property>
+	       	 
+	       	 <!-- 
+	       	 <property name="demo">
+	       	 	<props>
+	       	 		<prop key="a">b</prop>
+	       	 		<prop key="a1">b1</prop>
+	       	 	</props>
+	       	 </property>
+	       	  -->
+	       	 
+	       	 <!-- ref 引用其他bean -->
+	       	 <property name="desk" ref="desk">
+	       	 </property>
+	       	 
+       </bean>
+       
+       <bean id="desk" class="com.wendao.pojo.Desk">
+       		<property name="id" value="1"></property>
+       		<property name="price" value="100"></property>
+       </bean>
+        
+        
+</beans>
 
-</xml-body>
+
+
+
+
+
+
+
+
+
+
+
+

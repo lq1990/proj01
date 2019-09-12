@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+        
+        <!-- 
+        	数据源封装类，需要提前导入spring-jdbc.jar  
+        	数据源：获取db连接.
+        	
+        	通过设置的dataSource可以连接db了，取代Mybatis中配置dataSource
+        -->
+        <bean id="dataSource" 
+        	class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>        
+        	<property name="url" value="jdbc:mysql://localhost:3306/ssm"></property>
+			<property name="username" value="root"></property>        
+			<property name="password" value="123456"></property>        
+        </bean>
+        
+        <!-- 创建 SqlSessionFactory对象 -->
+        <bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        	
+        	<!-- db连接信息来源于 dataSource -->
+        	<property name="dataSource" ref="dataSource"></property>
+        </bean>
+        
+        
+        <!-- 扫描器，相当于mybatis.xml中 mappers > package,
+        	扫描com.wendao.mapper包后会给对应接口创建对象 -->
+        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        	<!-- 要扫描哪个包 -->
+        	<property name="basePackage" value="com.wendao.mapper"></property>
+        	
+        	<!-- 和factory产生关系 -->
+        	<property name="sqlSessionFactory" ref="factory"></property>
+        </bean>
+        
+        
+        
+        
+        <!-- IoC/DI。即 将AirportMapper的实例化 交给Spring处理。
+        	 通过set方法，赋值给airportMapper -->
+        <bean id="airportService" 
+        		class="com.wendao.service.impl.AirportServiceImpl">
+        	<property name="airportMapper" ref="airportMapper"></property>
+        	
+        </bean>
+        
+        
+        
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
