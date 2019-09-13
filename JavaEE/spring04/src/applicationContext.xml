@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans.xsd
+ 		http://www.springframework.org/schema/aop
+ 		http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean id="mybefore" class="com.wendao.advice.MyBeforeAdvice"></bean>
+	<bean id="myafter" class="com.wendao.advice.MyAfterAdvice"></bean>
+
+	<!-- 给切点 设置前置通知、后置通知
+		优点：不影响原有代码
+	 -->
+	<aop:config>
+		<!-- 配置原有功能，切点 -->
+		<aop:pointcut 
+			expression="execution(* com.wendao.test.Demo.*(..))" 
+			id="mypoint"/>
+			
+			
+		<aop:advisor advice-ref="mybefore" pointcut-ref="mypoint"/>
+		<aop:advisor advice-ref="myafter" pointcut-ref="mypoint"/>
+	</aop:config>
+	
+	
+	<!-- 把Demo交个spring处理 -->
+	<bean id="demo" class="com.wendao.test.Demo"></bean>
+
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

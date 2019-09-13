@@ -32,10 +32,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<form action="" method="post">
+  	<form action="login" method="post">
+  		<div style="color: red;">${error }</div>
   		用户名：<input type="text" name="username" /><br/>
   		密码：<input type="password" name="password" /><br/>
-  		验证码：<input type="text" size="1" />
+  		验证码：<input type="text" size="1" name="code" />
   			<img width="80" height="40" src="validcode" />
   			<a href="#">看不清</a><br/>
   		<input type="submit" value="登录" />
