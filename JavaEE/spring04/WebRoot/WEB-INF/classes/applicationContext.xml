@@ -7,27 +7,39 @@
  		http://www.springframework.org/schema/aop
  		http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<bean id="mybefore" class="com.wendao.advice.MyBeforeAdvice"></bean>
-	<bean id="myafter" class="com.wendao.advice.MyAfterAdvice"></bean>
+	<bean id="mythrow" class="com.wendao.advice.MyThrowAdvice"></bean>
 
-	<!-- 给切点 设置前置通知、后置通知
-		优点：不影响原有代码
-	 -->
+	<!-- 异常通知，使用AspectJ -->
 	<aop:config>
-		<!-- 配置原有功能，切点 -->
-		<aop:pointcut 
-			expression="execution(* com.wendao.test.Demo.*(..))" 
-			id="mypoint"/>
+		<aop:aspect ref="mythrow">
+			<aop:pointcut 
+				expression="execution(* com.wendao.test.*.*(..))" 
+				id="mypoint"/>
+				
+			<aop:after-throwing 
+				method="myexception" 
+				pointcut-ref="mypoint"
+				throwing="e" />
+			<!--
+				 method: 设置 切点触发异常时，调用的方法。此方法所在的class 在ref中配置		
+				 pointcut-ref: 设置切点
+				 throwing: 设置异常参数e
+			 -->
+				
 			
-			
-		<aop:advisor advice-ref="mybefore" pointcut-ref="mypoint"/>
-		<aop:advisor advice-ref="myafter" pointcut-ref="mypoint"/>
+			<!-- 具体流程：
+				当切点触发异常时，
+					调用的是方法是 ref="mythrow"配置的class的 method="myexception"
+					
+				注意：使用Spring时，在service方法中不用try/catch 而用throw。
+					否则spring不知道异常，在处理事务时，不能rollback
+			 -->
+		</aop:aspect>
 	</aop:config>
 	
 	
-	<!-- 把Demo交个spring处理 -->
 	<bean id="demo" class="com.wendao.test.Demo"></bean>
-
+	
 
 </beans>
 

@@ -1,7 +1,9 @@
 package com.wendao.test;
 
 public class Demo {
-	public void demo01() {
+	public void demo01() throws Exception {
+		int i=5/0;
+		
 		System.out.println("Demo.demo01()");
 	}
 	
@@ -17,5 +19,9 @@ public class Demo {
 		System.out.println("Demo.demmo04()");
 	}
 	
+	public String demo05(String name) {
+		
+		return "这是Demo.demo05()的返回值";
+	}
 	
 }

@@ -10,10 +10,22 @@ public class Test {
 		ApplicationContext ac = 
 				new ClassPathXmlApplicationContext("applicationContext.xml");
 		Demo demo = ac.getBean("demo", Demo.class);
-		demo.demo01();
-		demo.demo02();
-		demo.demo03();
-		demo.demo04("name4");
+		try {
+			demo.demo01();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+		}
+		System.out.println();
+		
+//		demo.demo02(); System.out.println();
+//		demo.demo03(); System.out.println();
+//		demo.demo04("传给demo.demo04()的参数"); System.out.println();
+//		demo.demo05(""); System.out.println();
+//		
+//		System.out.println("=========================");
+//		Demo1 demo1 = ac.getBean("demo1", Demo1.class);
+//		demo1.demo11();
 		
 		
 	}
