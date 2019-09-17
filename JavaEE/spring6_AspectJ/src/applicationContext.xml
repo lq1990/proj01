@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans.xsd
+	 http://www.springframework.org/schema/aop
+	 http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean id="myadvice" class="com.wendao.advice.MyAdvice"></bean>
+
+ 
+	<aop:config>
+		<!-- 注意：aop:aspect标签中写的 后置、异常通知，运行顺序与此xml配置顺序有关 -->
+		<aop:aspect ref="myadvice">
+		
+			<!-- 配置切点方法为 com.wendao.test.Demo类下的所有方法  -->
+			<aop:pointcut 
+				expression="execution(* com.wendao.test.Demo.demo1(String,int)) and args(name,age) " 
+				id="myp"/>
+				
+			<aop:pointcut 
+				expression="execution(* com.wendao.test.Demo.demo1(String)) and args(name) " 
+				id="myp2"/>
+				
+			<aop:before pointcut-ref="myp" method="mybefore" arg-names="name,age"/>
+			<aop:before pointcut-ref="myp2" method="mybefore1" arg-names="name"/>
+			
+			<!-- 
+
+			<aop:after-throwing pointcut-ref="myp" method="mythrow"/>
+			
+			两个after标签，
+				after: 无论切点方法是否抛异常，都走(类似于finally)
+				after-returning: 只有当切点方法正常return 才走（即 不抛异常时才走）
+			<aop:after pointcut-ref="myp" method="myafter"/>
+			<aop:after-returning pointcut-ref="myp" method="myafterreturing"/>
+			
+			<aop:around pointcut-ref="myp" method="myarround"/>
+			
+			 -->
+			 
+		</aop:aspect>
+	</aop:config>
+
+
+
+	<bean id="demo" class="com.wendao.test.Demo"></bean>
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+

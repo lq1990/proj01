@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans.xsd
+	 http://www.springframework.org/schema/aop
+	 http://www.springframework.org/schema/aop/spring-aop.xsd
+	 http://www.springframework.org/schema/context
+	 http://www.springframework.org/schema/context/spring-context.xsd
+	">
+	
+	<!-- 
+		主题：注解，使用注解代替xml配置。
+		配置下，在哪些包 下用到注解，需要让spring知道
+		若有多个包，用逗号分隔 eg. a.b.c,a.c.d
+	 -->
+	 <context:component-scan 
+	 	base-package="com.wendao.advice,com.wendao.test">
+	 </context:component-scan>
+
+
+	<!-- 
+		属性 proxy-target-class 
+			若为 true：使用cglib动态代理
+			若为 false，使用jdk动态代理
+	 -->
+	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+
+
+
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+

@@ -8,8 +8,20 @@
 	 http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<bean id="mythrow" class="com.wendao.advice.MyThrow"></bean>
+	<bean id="myarround" class="com.wendao.advice.MyArround"></bean>
 
 
+<!-- 配置环绕通知 -->
+	<aop:config>
+		<aop:pointcut 
+			expression="execution(* com.wendao.test.*.*(..))" 
+			id="mypoint"/>
+			
+		<aop:advisor pointcut-ref="mypoint" advice-ref="myarround"/>
+	</aop:config>
+
+
+<!-- 配置 异常通知
 	<aop:config>
 		<aop:pointcut
 			expression="execution(* com.wendao.test.*.*(..))" id="mypoint" />
@@ -17,6 +29,10 @@
 		<aop:advisor advice-ref="mythrow" pointcut-ref="mypoint"/>
 
 	</aop:config>
+
+ -->
+
+
 
 	<bean id="demo" class="com.wendao.test.Demo"></bean>
 
