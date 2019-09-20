@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans.xsd
+	 http://www.springframework.org/schema/aop
+	 http://www.springframework.org/schema/aop/spring-aop.xsd
+	 http://www.springframework.org/schema/context
+	 http://www.springframework.org/schema/context/spring-context.xsd"
+	 default-autowire="byName"
+	 >
+	 <!-- 上面配置全局默认 autowire -->
+	
+	<bean id="teacher" class="com.wendao.test.Teacher"></bean>
+	
+	<!-- 定义bean对象的属性，属性按照set方法赋值 -->
+	<!-- 自动注入(bean属性赋值)：
+		设置 autowire="byName"时，People中属性会自动ref到 与属性同名的 bean id;
+		byType: 使得该bean属性类型 与 其它bean的设置class一致，但：此xml下不能有多个同类的 
+		constructor: 匹配对象构造器的形参名
+		
+		-->
+	<bean id="people" class="com.wendao.test.People" autowire="default">
+	</bean>
+	
+	<bean id="people1" class="com.wendao.test.People">
+		<property name="teacher" ref="teacher"></property>
+	</bean>
+
+	<!-- 使用autowire, 可以不必手写 bean.property -->
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+

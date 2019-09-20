@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName">
+	
+	<!-- 使用spring注解的话，需要配置。
+		但使用注解的话，autowire就失效了 -->
+	<context:component-scan base-package="com.wendao.service.impl"></context:component-scan>
+
+
+
+
+	<!-- 数据源，连接db -->
+	<bean id="dataSource" 
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>	
+		<property name="url" value="jdbc:mysql://localhost:3306/ssm"></property>		
+		<property name="username" value="root"></property>		
+		<property name="password" value="123456"></property>		
+	</bean>
+	
+	<!-- SqlSession factory，配置数据源和 别名包 -->
+	<bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="typeAliasesPackage" value="com.wendao.pojo"></property>
+	</bean>
+	<!-- 上面的id名 不要设置为sqlSessionFactory，虽然可以省去下面的扫描器配置，但优先级问题 -->
+
+
+	<!-- mapper scanner -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.wendao.mapper"></property>
+		<property name="sqlSessionFactory" ref="factory"></property>
+	</bean>
+
+
+
+	<!-- 注入，即给类中属性赋值 -->
+	<bean id="usersService" class="com.wendao.service.impl.UsersServiceImpl">
+	</bean>
+	
+	
+	<!-- AOP: 使用Schema-based -->
+	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+	<aop:config>
+		<aop:pointcut 
+			expression="execution(* com.wendao.service.impl.UsersServiceImpl.login(..))"
+			id="myp"/>
+			
+		<aop:advisor pointcut-ref="myp" advice-ref="mybefore"/>
+		<aop:advisor pointcut-ref="myp" advice-ref="myafter"/>
+	</aop:config>
+	
+	<bean id="mybefore" class="com.wendao.advice.MyBefore"></bean>
+	<bean id="myafter" class="com.wendao.advice.MyAfter"></bean>
+	
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

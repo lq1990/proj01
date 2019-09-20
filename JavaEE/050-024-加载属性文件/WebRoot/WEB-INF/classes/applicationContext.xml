@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName">
+	<!-- 使用autowire自动注入，其优先级很高，加载xml文件时优先实例化 设置autowire的类，当多个类有ref关系时 会接连被实例化。
+		因此若有 db.properties 内容会滞后加载，则db连接就出错了 -->
+	
+	
+	<!-- 从类路径下寻找使用 classpath:  
+		配置属性文件后，使用 ${key} 取值。
+		当加载了属性文件后，信息就放到spring容器中了 -->
+	<context:property-placeholder location="classpath:db.properties,classpath:second.properties"/>
+	<context:component-scan base-package="com.wendao.service.impl"></context:component-scan>
+
+	<!-- 数据源，连接db -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		
+		<property name="driverClassName"
+			value="${jdbc.driver}"></property>
+			
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+
+
+
+	<!-- SqlSession factory，配置数据源和 别名包 -->
+	<bean id="factory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="typeAliasesPackage" value="com.wendao.pojo"></property>
+	</bean>
+	<!-- 上面的id名 不要设置为sqlSessionFactory，虽然可以省去下面的扫描器配置，但优先级问题 -->
+
+
+	<!-- mapper scanner -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.wendao.mapper"></property>
+		<!-- 
+			<property name="sqlSessionFactory" ref="factory"></property>
+		 -->
+		 
+		<!-- 当工厂是 value而非ref时，就可以 在关联工厂前，db已经连接好. 
+			自动注入只影响ref -->
+		<property name="sqlSessionFactoryBeanName" value="factory"></property>
+	</bean>
+
+
+
+	<!-- 注入，即给类中属性赋值 -->
+	<bean id="usersService"
+		class="com.wendao.service.impl.UsersServiceImpl">
+	</bean>
+
+
+	<!-- AOP: 使用Schema-based -->
+	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+	<aop:config>
+		<aop:pointcut
+			expression="execution(* com.wendao.service.impl.UsersServiceImpl.login(..))"
+			id="myp" />
+
+		<aop:advisor pointcut-ref="myp" advice-ref="mybefore" />
+		<aop:advisor pointcut-ref="myp" advice-ref="myafter" />
+	</aop:config>
+
+	<bean id="mybefore" class="com.wendao.advice.MyBefore"></bean>
+	<bean id="myafter" class="com.wendao.advice.MyAfter"></bean>
+
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
