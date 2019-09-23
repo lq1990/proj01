@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 扫描注解，将其放到SpringMVC容器中。不要把这个放到spring配置 -->
+	<context:component-scan base-package="com.wendao.controller"></context:component-scan>
+	
+	<!-- 注解驱动
+		org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping
+		org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter
+	 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	
+	
+	<!--
+		静态资源配置，
+	 需求：浏览器请求静态资源 eg js/ img/中文件时，需要为静态资源做 配置 
+		mapping="/js/**" 指根目录下 js文件夹下 所有文件与文件夹内文件，若只有一个*则只是一层
+		只要发现请求格式为mapping值(mapping是针对url请求)，
+		则就去location中去找（location位置是在proj中）
+	-->
+	<mvc:resources location="/WEB-INF/js/" mapping="/js/**"></mvc:resources>
+	<mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
+	<mvc:resources location="/images/" mapping="/images/**"></mvc:resources>
+
+
+</beans>

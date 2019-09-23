@@ -7,6 +7,9 @@ myCommonsIO/
 *.png
 *.pdf
 img/
+imgs/
+image/
+images/
 download/
 images/
 editor/
@@ -15,3 +18,4 @@ themes/
 
 *.zip
 lib/
+js/
