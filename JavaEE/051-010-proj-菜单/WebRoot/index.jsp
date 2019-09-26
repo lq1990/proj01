@@ -18,9 +18,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	<script type="text/javascript" src="js/jquery.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			$.post("show", function(data){
+				var res = "";
+				for(var i=0; i<data.length; i++) {
+					res += "<dl>";
+					
+					res += "<dt style='cursor:pointer'>"+ data[i].name +"</dt>";
+					for(var j=0; j<data[i].children.length; j++) {
+						res += "<dd style='cursor:pointer'>"+data[i].children[j].name+"</dd>";
+					}
+					
+					res += "</dl>";
+				}
+				
+				$("body").html(res);
+			});
+			
+			// 对所有父菜单添加点击事件，使用动态绑定 live。此处不能使用 $().click()
+			$("dt").live("click", function(){
+				// slow normal fast 数值
+				$(this).siblings().slideToggle(100);
+			});
+			
+			
+		});
+	</script>
   </head>
   
   <body>
-    This is my JSP page. <br>
+
+
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
