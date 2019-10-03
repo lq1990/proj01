@@ -67,7 +67,11 @@ public class DemoInterceptor implements HandlerInterceptor {
 	public void afterCompletion(HttpServletRequest arg0, 
 			HttpServletResponse arg1, Object arg2, Exception arg3)
 			throws Exception {
-		System.out.println("DemoInterceptor.afterCompletion(), 异常信息："+arg3.getMessage());
+		System.out.println("DemoInterceptor.afterCompletion()");
+		if(arg3 != null) {
+			System.out.println("异常信息："+arg3.getMessage());
+		}
+		
 	}
 	
 }

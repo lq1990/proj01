@@ -30,6 +30,7 @@
 		<!-- 此种方式：所有控制器都拦截
 		 -->
 		<bean class="com.wendao.interceptor.DemoInterceptor"></bean>
+		<bean class="com.wendao.interceptor.DemoInterceptor2"></bean>
 		
 		
 		<!-- 配置特定的拦截 控制器
