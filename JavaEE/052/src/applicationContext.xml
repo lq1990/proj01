@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName">
+	
+	<bean id="a" class="java.lang.Integer">
+		<constructor-arg type="int" value="10"></constructor-arg>
+	</bean>
+
+
+	<!-- 
+		p指的是oneBean实例属性的配置
+		p会通过set方法进行赋值，c是通过构造方法
+		
+		p:propertyName="value"
+		p:propertyName-ref="otherBean"
+		c:constructorArgName="value"
+		c:constructorArgName-ref="otherBean"
+		
+	-->
+	<bean id="oneBean" class="com.wendao.OneBean"
+		p:a="100"
+		p:o-ref="otherBean"
+		c:a="200"
+		c:o-ref="otherBean"></bean>
+
+	<bean id="otherBean" class="com.wendao.OtherBean"></bean>
+
+
+
+
+	<!-- loopup-method使用到的。
+		配置的lookup-method的
+			name:方法名
+			bean:方法返回对象
+	<bean id="manager" class="com.wendao.test.CommandManager">
+		<lookup-method bean="command2" name="createCommand"/>
+	</bean>
+	
+	<bean id="command1" class="com.wendao.test.MyCommand1"></bean>
+	<bean id="command2" class="com.wendao.test.MyCommand2"></bean>
+			 -->
+
+
+	<!-- aop源码学习 -->
+	<bean id="service" class="com.wendao.service.impl.TestServiceImpl"></bean>
+	
+	<bean id="advice" class="com.wendao.advice.TestServiceAdvisor"></bean>
+
+	<!-- 表达式定义方式：execution 
+	
+		 任意只有唯一参数，且参数类型为字符串的，都作为连接点 
+		<aop:pointcut expression="args( java.lang.String)" id="pointcut"/>
+	<aop:config>
+		
+		<aop:pointcut expression="execution(* com.wendao.service.impl.*.*(..))" id="pointcut"/>
+		<aop:advisor advice-ref="advice" pointcut-ref="pointcut"/>
+	</aop:config>
+	-->
+	
+	
+	<!-- 表达式定义方式：target，针对实现了一个接口的所有类
+	<aop:config>
+		<aop:pointcut expression="target(com.wendao.service.TestService)" id="mp"/>
+		<aop:advisor advice-ref="advice" pointcut-ref="mp"/>
+	</aop:config>
+	 -->
+	 
+	 
+	 <!-- 表达式定义方式：this, 与target类似，但是实现了某个接口的Proxy 
+	 <aop:config>
+	 	<aop:pointcut expression="this(com.wendao.service.TestService)" id="mp"/>
+	 	<aop:advisor advice-ref="advice" pointcut-ref="mp"/>
+	 </aop:config>
+	 -->
+	 
+	 <!-- 表达式定义方法: within, 包下的 
+	 <aop:config>
+	 	<aop:pointcut expression="within(com.wendao.service.impl.*)" id="mp"/>
+	 	<aop:advisor advice-ref="advice" pointcut-ref="mp"/>
+	 </aop:config>
+	 -->
+	 
+	 <!-- 表达式定义方法：args。以参数为标准，设置多个参数不同顺序，则对应不同 -->
+	 <aop:config>
+	 	<aop:pointcut expression="args(java.lang.String)" id="mp"/>
+	 	<aop:advisor advice-ref="advice" pointcut-ref="mp"/>
+	 </aop:config>
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
