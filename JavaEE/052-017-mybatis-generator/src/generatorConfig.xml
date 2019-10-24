@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="testTables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!-- true：去除生成的注释 -->
+			<property name="suppressAllComments" value="true"/>
+		</commentGenerator>
+		
+		
+		
+		<!-- db连接信息 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" 
+			connectionURL="jdbc:mysql://localhost:3306/ssm" 
+			userId="root" password="123456"></jdbcConnection>
+		
+		
+		
+		<!-- 默认false：把JDBC DECIMAL和NUMERIC 类型解析为Integer, 
+			若设true：解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false"/>
+		</javaTypeResolver>
+		
+		
+		
+		
+		<!-- targetProject：生成PO类的位置 -->
+		<javaModelGenerator targetPackage="com.wendao.entity" targetProject=".\src">
+			<!-- 是否让schema（db名称 ssm）作为包的后缀, 若 true: com.wendao.entity.ssm -->
+			<property name="enableSubPackages" value="false"/>
+			
+			<!-- 从db返回的值被清理前后的空格 -->
+			<property name="trimStrings" value="true"/>
+		</javaModelGenerator>
+		
+		
+		
+		<!-- mapper映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="com.wendao.mapper" targetProject=".\src">
+			<property name="enableSubPackages" value="false"/>
+		</sqlMapGenerator>
+		
+		
+		
+		<!-- mapper接口生成的位置 -->
+		<javaClientGenerator targetPackage="com.wendao.mapper"
+			 type="XMLMAPPER" targetProject=".\src">
+			<property name="enableSubPackages" value="false"/>	 
+		</javaClientGenerator>
+		
+		
+		
+		<!-- 指定数据库表，schema代码db名称, 若写schema的话 需要把connectionURL的ssm去掉-->
+		<table tableName="tb_text" schema=""></table>
+	
+		
+	</context>
+</generatorConfiguration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.wendao.mapper.One2Many">
+ 
+ 	<!-- 一次查询。 查询所有学生-->
+ 	<resultMap type="com.wendao.entity.o2m.Student" id="stuMap">
+ 		<id column="sid" property="id"/>
+ 		<result column="sname" property="name"/>
+ 		<result column="age" property="age"/>
+ 		
+ 		<!-- obj的属性类型，用关联 -->
+ 		<association property="classes" javaType="com.wendao.entity.o2m.Classes">
+ 			<id column="id" property="id"/>
+ 			<result column="name" property="name"/>
+ 			<result column="teacherName" property="teacherName"/>
+ 		</association>
+ 	</resultMap>
+ 	
+ 	<select id="selectAllStudents" resultMap="stuMap">
+ 		select
+ 			c.id, c.name, c.teacherName,
+ 			s.id as sid, s.name as sname, s.age
+ 		from
+ 			tb_cls c
+ 				right join
+ 			tb_stu s
+ 				on c.id = s.cls_id
+ 				
+ 	</select>
+ 	
+ 	
+ 	
+ 	<!-- n+1次访问db -->
+ 	<resultMap type="com.wendao.entity.o2m.Classes" id="clsMap2">
+ 		<id column="id" property="id"/>
+ 		<result column="name" property="name"/>
+ 		<result column="teacherName" property="teacherName"/>
+ 		
+ 		<!-- 学生集合用collection描述.
+ 			private javaType<ofType> property -->
+ 		<collection property="students" javaType="java.util.List"
+ 			ofType="com.wendao.entity.o2m.Student"
+ 			select="com.wendao.mapper.One2Many.selectStudentByClass" column="id"></collection>
+ 	</resultMap>
+ 	
+ 	<select id="selectAll" resultMap="clsMap2">
+ 		select
+ 			c.id, c.name, c.teacherName
+ 		from
+ 			tb_cls c
+ 	</select>
+ 	<!-- 外键查询学生，根据班级查询学生 -->
+ 	<select id="selectStudentByClass" resultType="com.wendao.entity.o2m.Student">
+ 		select id,name,age
+ 		from tb_stu
+ 		where cls_id=#{clsId}
+ 	</select>
+ 	
+ 	
+
+ 	
+ 	<!-- 一次查询 所有班级 -->
+ 	<select id="selectAllClasses" resultMap="clsMap">
+ 		select
+ 			c.id, c.name, c.teacherName,
+ 			s.id as sid, s.name as sname, s.age
+ 		from
+ 			tb_cls c
+ 				left join
+ 			tb_stu s
+ 				on c.id=s.cls_id
+ 	</select>
+ 	<resultMap type="com.wendao.entity.o2m.Classes" id="clsMap">
+ 		<id column="id" property="id"/>
+ 		<result column="name" property="name"/>
+ 		<result column="teacherName" property="teacherName"/>
+ 		
+ 		<collection property="students" javaType="java.util.List"
+ 			ofType="com.wendao.entity.o2m.Student">
+ 			<id column="sid" property="id"/>		
+ 			<result column="sname" property="name"/>
+ 			<result column="age" property="age"/>
+ 		</collection>
+ 		
+ 	</resultMap>
+ 	
+ </mapper>
+ 
+ 
+ 
