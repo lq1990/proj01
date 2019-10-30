@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.wendao</groupId>
+	<artifactId>065-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	
+	<!-- 可以借用属性，对版本统一管理 -->
+	<properties>
+		<springVersion>4.1.6.RELEASE</springVersion>
+	</properties>
+	
+
+	<!-- 配置 dependencyManagement，相当于OOP中的private.
+	
+		子项目想用包时，自己写上,但版本不用写，是和父项目一致的。
+		配置优点：控制子项目 包版本。
+	 -->
+	<dependencyManagement>
+
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${springVersion}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>child2-module</module>
+	</modules>
+</project>

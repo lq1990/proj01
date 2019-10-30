@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>065-child</artifactId>
+	<description>非父类，可以直接jar war</description>
+	<build />
+
+	<!-- 因为此项目继承了parent项目，所以 groupId version不用写。 -->
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+	</dependencies>
+
+	<parent>
+		<groupId>com.wendao</groupId>
+		<artifactId>065-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+</project>
