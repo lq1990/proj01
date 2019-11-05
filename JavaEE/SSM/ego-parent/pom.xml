@@ -1,0 +1,183 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.wendao</groupId>
+	<artifactId>ego-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	
+	
+	<properties>
+		<spring-version>4.1.6.RELEASE</spring-version>
+		<jackson-version>2.4.1</jackson-version>
+		<servlet-version>3.0.1</servlet-version>
+		<jsp-version>2.2</jsp-version>
+		<jstl-version>1.2</jstl-version>
+		<mybatis-version>3.2.7</mybatis-version>
+		<mybatis-spring-version>1.2.3</mybatis-spring-version>
+		<log4j-version>1.2.17</log4j-version>
+		<mysql-connector-java-version>5.1.38</mysql-connector-java-version>
+		<commons-logging-version>1.1.1</commons-logging-version>
+		<aopalliance-version>1.0</aopalliance-version>
+		<aspectjweaver-version>1.8.6</aspectjweaver-version>
+		<tomcat-version>2.2</tomcat-version>
+		<mybatis-paginator-version>1.2.15</mybatis-paginator-version>
+		<pagehelper-version>4.1.6</pagehelper-version>
+		<commons-fileupload-version>1.3.1</commons-fileupload-version>
+		<commons-net-version>3.3</commons-net-version>
+		<httpclient-version>4.5.2</httpclient-version>
+		<jedis-version>2.8.1</jedis-version>
+		<spring-data-redis-version>1.7.1.RELEASE</spring-data-redis-version>
+		<spring-session-version>1.2.2.RELEASE</spring-session-version>
+		<solrj-version>4.10.3</solrj-version>
+	</properties>
+
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${servlet-version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.annotation</groupId>
+				<artifactId>jsr250-api</artifactId>
+				<version>1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${jsp-version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>jstl</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${jstl-version}</version>
+			</dependency>
+
+
+			<!-- spring use -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring-version}</version>
+			</dependency>
+			<!-- aop use -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectjweaver-version}</version>
+			</dependency>
+
+
+			<!-- mybatis use -->
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${mybatis-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>${mybatis-spring-version}</version>
+			</dependency>
+
+
+			<!-- 日志包 -->
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j-version}</version>
+			</dependency>
+
+			<!-- mysql驱动类 -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql-connector-java-version}</version>
+			</dependency>
+
+			<!-- jackson, 用于转换json字符串。引入一个 即可把其余的都引了 -->
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson-version}</version>
+			</dependency>
+
+			<!-- use for 文件上传下载 -->
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${commons-fileupload-version}</version>
+			</dependency>
+
+
+		</dependencies>
+	
+	</dependencyManagement>
+
+
+	<!-- path配置该项目路径 -->
+	<!-- 配置resources:因为默认src/main/java中的xml不被编译。可在目录结构的target进行查看 手动配置src/main/java后，src/main/resources也要加上 
+		** ：匹配任意子级或后代级目录, * ：任意字符 -->
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+
+
+		</resources>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+					<configuration>
+						<port>80</port>
+						<path>/</path>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+
+	</build>
+
+
+	<modules>
+		<module>ego-management</module>
+		<module>ego-portal</module>
+		<module>ego-pojo</module>
+	</modules>
+</project>
+
+
+
+
+
+
+
+

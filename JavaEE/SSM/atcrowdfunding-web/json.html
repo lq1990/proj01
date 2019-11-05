@@ -1,0 +1,37 @@
+<!doctype html>
+<head>
+<title>JS - OOP</title>
+<meta charset="utf8" />
+
+<script>
+	// json: js object notation
+	function Student() {
+		//this.sname = "zhangsan";
+		//this.age = 20;
+	}
+	
+	// js支持给对象动态添加属性
+	var s = new Student();
+	s.sname = "lisi";
+	console.log(s.sname);
+	
+	var s1 = new Student();
+	console.log(s1.sname);
+	
+	// 声明 json 对象
+	var obj = {};
+	obj.name = "anna";
+	console.log(obj.name);
+	
+	// json array
+	var array = [{}, {}, {}];
+	console.log(array);
+	console.log(array.length);
+	
+	// 因为在网络中只能传递 字符串; 浏览器可以解析字符串。
+	// 将后台对象按照json格式转换为字符串 输出到浏览器中，让js当成对象处理
+	
+	
+</script>
+
+</head>

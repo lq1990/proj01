@@ -151,7 +151,10 @@
 				<version>2.2</version>
 				<configuration>
 					<port>80</port>
-					<path>/</path>
+					<path>/jqk</path>
+					<username>tomcat</username>
+					<password>tomcat</password>
+					<url>http://192.168.241.130:8080/manager/text</url>
 				</configuration>
 			</plugin>
 		</plugins>

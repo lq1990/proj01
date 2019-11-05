@@ -1,0 +1,21 @@
+<!doctype html>
+<head>
+<title>JS - 作用域</title>
+<meta charset="utf8" />
+
+<script>
+
+	// js中使用var声明的变量是 局部变量
+	// 不用var声明的是 全局变量。因为是省略了 window.xxx，window是全局对象 给它一个属性，那这个属性肯定是全局的
+	function test() {
+		username = "zhangsan";
+		
+	}
+	
+	test();
+	
+	console.log(username);
+
+</script>
+
+</head>

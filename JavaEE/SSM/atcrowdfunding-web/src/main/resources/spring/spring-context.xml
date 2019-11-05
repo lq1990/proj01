@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName">
+
+
+	<!-- 注解扫描。排除Controller，因此它由SpringMVC管理 -->
+	<context:component-scan
+		base-package="com.wendao.*">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+
+
+	<!-- 数据源 -->
+	<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass"
+			value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/atcrowdfunding"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value="123456"></property>
+	</bean>
+
+	<!-- SqlSessionFactory -->
+	<bean id="factory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		
+		<property name="configLocation"
+			value="classpath:mybatis/config.xml"></property>
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="typeAliasesPackage" value="com.wendao.atcrowdfunding.bean"></property>
+		<property name="mapperLocations">
+			<list>
+				<value>classpath*:mybatis/mapper-*.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 扫描器 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.wendao.atcrowdfunding.**.dao"></property>
+		<property name="sqlSessionFactory" ref="factory"></property>
+	</bean>
+
+
+	<!-- 事务管理器 -->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<!-- 声明式事务，isolation="DEFAULT"是可重复读 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" isolation="DEFAULT" rollback-for="java.lang.Exception"/>
+			<tx:method name="query*" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- AOP -->
+	<aop:config>
+		<aop:pointcut
+			expression="execution(* com.wendao..*Service.*(..))"
+			id="mypoint" />
+		<aop:advisor pointcut-ref="mypoint" advice-ref="txAdvice" />
+	</aop:config>
+
+
+
+
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
