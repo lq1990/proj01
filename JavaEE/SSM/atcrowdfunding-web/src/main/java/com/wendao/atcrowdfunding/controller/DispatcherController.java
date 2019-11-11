@@ -42,7 +42,7 @@ public class DispatcherController {
 //		session.removeAttribute("loginUser");
 		session.invalidate(); // session失效，使得session中所有数据删除了
 		
-		return "redirect:login"; // localhost/login
+		return "redirect:login"; // localhost/login，重定向后交给控制器
 	}
 	
 	

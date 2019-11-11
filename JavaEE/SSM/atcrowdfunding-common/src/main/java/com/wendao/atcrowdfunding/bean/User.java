@@ -5,19 +5,40 @@ public class User {
 	private String username;
 	private String loginacct;
 	private String pwd;
+	private String email;
+	private String createtime; // yyyy-MM-dd HH:mm:ss
 	
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
 	
-	public User(Integer id, String username, String loginacct, String pwd) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.loginacct = loginacct;
-		this.pwd = pwd;
+	public String getCreatetime() {
+		return createtime;
 	}
+
+
+	public void setCreatetime(String createtime) {
+		this.createtime = createtime;
+	}
+
+
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
 
 
 
@@ -59,13 +80,16 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", loginacct=" + loginacct + ", pwd=" + pwd + "]";
+		return "User [id=" + id + ", username=" + username + ", loginacct=" + loginacct + ", pwd=" + pwd + ", email="
+				+ email + ", createtime=" + createtime + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((createtime == null) ? 0 : createtime.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((loginacct == null) ? 0 : loginacct.hashCode());
 		result = prime * result + ((pwd == null) ? 0 : pwd.hashCode());
@@ -82,6 +106,16 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (createtime == null) {
+			if (other.createtime != null)
+				return false;
+		} else if (!createtime.equals(other.createtime))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;

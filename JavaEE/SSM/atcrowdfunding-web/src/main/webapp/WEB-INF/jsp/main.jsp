@@ -1,9 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -14,9 +10,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="description" content="">
     <meta name="author" content="">
 
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="${APP_PATH }/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${APP_PATH }/css/font-awesome.min.css">
+	<link rel="stylesheet" href="${APP_PATH }/css/main.css">
 	<style>
 	.tree li {
         list-style-type: none;
@@ -80,10 +76,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<a href="user/index"><i class="glyphicon glyphicon-user"></i>用户维护</a> 
 							</li>
 							<li style="height:30px;">
-								<a href="role.html"><i class="glyphicon glyphicon-king"></i>角色维护</a> 
+								<a href="role/index"><i class="glyphicon glyphicon-king"></i>角色维护</a> 
 							</li>
 							<li style="height:30px;">
-								<a href="permission.html"><i class="glyphicon glyphicon-lock"></i>许可维护</a> 
+								<a href="permission/index"><i class="glyphicon glyphicon-lock"></i>许可维护</a> 
 							</li>
 						</ul>
 					</li>

@@ -34,7 +34,8 @@
 		<property name="password" value="123456"></property>
 	</bean>
 
-	<!-- SqlSessionFactory -->
+	<!-- SqlSessionFactory.
+		classpath* 会将所有的maven项目的resources都扫描到 -->
 	<bean id="factory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		

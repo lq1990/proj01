@@ -1,14 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <base href="<%=basePath%>">
     
     <title>登录页面</title>
     <meta charset="utf8">
@@ -29,8 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		
 	</style>
-	<script type="text/javascript" src="../../js/jquery-1.9.1.js" charset="utf8"></script>
-	<script type="text/javascript" src="../../layer/layer.js" charset="utf8"></script>
+	<script type="text/javascript" src="${APP_PATH }/js/jquery-1.9.1.js" charset="utf8"></script>
+	<script type="text/javascript" src="${APP_PATH }/layer/layer.js" charset="utf8"></script>
 	
 	<script type="text/javascript" charset="utf8">
 		function dologin() {
