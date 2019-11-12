@@ -191,12 +191,12 @@ table tbody td:nth-child(even) {
 							} else if ( treeNode.level == 1 ) {
 								s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="editNode('+treeNode.id+')"  href="#2" title="修改权限信息">&nbsp;&nbsp;<i class="fa fa-fw fa-edit rbg "></i></a>';
 								if (treeNode.children.length == 0) {
-									s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" href="#2" >&nbsp;&nbsp;<i class="fa fa-fw fa-times rbg "></i></a>';
+									s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="deleteNode('+treeNode.id+')" href="#2" >&nbsp;&nbsp;<i class="fa fa-fw fa-times rbg "></i></a>';
 								}
 								s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="addNode('+treeNode.id+')" href="#2" >&nbsp;&nbsp;<i class="fa fa-fw fa-plus rbg "></i></a>';
 							} else if ( treeNode.level == 2 ) {
 								s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="editNode('+treeNode.id+')"  href="#2" title="修改权限信息">&nbsp;&nbsp;<i class="fa fa-fw fa-edit rbg "></i></a>';
-								s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" href="#2">&nbsp;&nbsp;<i class="fa fa-fw fa-times rbg "></i></a>';
+								s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="deleteNode('+treeNode.id+')" href="#2">&nbsp;&nbsp;<i class="fa fa-fw fa-times rbg "></i></a>';
 							}
 			
 							s += '</span>';
@@ -252,6 +252,35 @@ table tbody td:nth-child(even) {
 		function editNode(id) {
 			window.location.href="${APP_PATH}/permission/edit?id="+id;
 		}
+		
+		function deleteNode(id) {
+			layer.confirm("删除许可信息，是否继续？", {icon:3, title:'提示'}, function(cindex){
+				$.ajax({
+					type: "post",
+					url: "${APP_PATH}/permission/delete",
+					data: {
+						id: id
+					},
+					success: function(result) {
+						if (result.success) {
+							// refresh data 
+							var treeObj = $.fn.zTree.getZTreeObj("permissionTree");
+							treeObj.reAsyncChildNodes(null, "refresh");
+							
+						} else {
+							layer.msg("删除失败", {time:2000, icon:5, shift: 6}, function(){
+							});
+						}
+					}
+				});
+				
+				layer.close(cindex);
+			},function(cindex){
+				layer.close(cindex);
+			});
+			
+		}
+		
 		
 	</script>
 

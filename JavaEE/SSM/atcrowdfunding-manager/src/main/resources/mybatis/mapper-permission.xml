@@ -17,6 +17,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id=#{id}
 	</update>
 	
+	
+	<delete id="deletePermission">
+		delete from t_permission where id=#{id}
+	</delete>
+	
+	<!-- user -> user_role -> role_permission -> permission -->
+	<select id="queryPermissionsByUser" resultType="com.wendao.atcrowdfunding.bean.Permission">
+		select *
+		from t_permission
+		where id in (
+			select permissionid from t_role_permission where roleid in (
+				select roleid from t_user_role where userid=#{id}
+			)
+		)
+	</select>
+	
 </mapper>
 
 

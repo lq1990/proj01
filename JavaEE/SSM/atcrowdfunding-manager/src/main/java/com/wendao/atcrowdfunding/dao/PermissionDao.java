@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Select;
 
 import com.wendao.atcrowdfunding.bean.Permission;
+import com.wendao.atcrowdfunding.bean.User;
 
 public interface PermissionDao {
 
@@ -25,5 +26,12 @@ public interface PermissionDao {
 
 	
 	void updatePermission(Permission perm);
+
+	void deletePermission(Permission perm);
+
+	@Select("select permissionid from t_role_permission where roleid=#{roleid}")
+	List<Integer> queryPermissionsByRoleid(Integer roleid);
+
+	List<Permission> queryPermissionsByUser(User dbUser);
 
 }

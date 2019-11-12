@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wendao.atcrowdfunding.bean.Permission;
+import com.wendao.atcrowdfunding.bean.User;
 import com.wendao.atcrowdfunding.dao.PermissionDao;
 import com.wendao.atcrowdfunding.service.PermissionService;
 
@@ -46,6 +47,24 @@ public class PermissionServiceImpl implements PermissionService{
 	public void updatePermission(Permission perm) {
 		permissionDao.updatePermission(perm);
 		
+	}
+
+	@Override
+	public void deletePermission(Permission perm) {
+
+		permissionDao.deletePermission(perm);
+	}
+
+	@Override
+	public List<Integer> queryPermissionsByRoleid(Integer roleid) {
+
+		return permissionDao.queryPermissionsByRoleid(roleid);
+	}
+
+	@Override
+	public List<Permission> queryPermissionsByUser(User dbUser) {
+
+		return permissionDao.queryPermissionsByUser(dbUser);
 	}
 	
 	

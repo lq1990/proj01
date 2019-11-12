@@ -28,6 +28,35 @@ public class RoleController {
 	private RoleService roleService;
 	
 	@ResponseBody
+	@RequestMapping("/doAssign")
+	public Object doAssign(Integer roleid, Integer[] permissionids) {
+		AJAXResult result = new AJAXResult();
+		
+		try {
+			
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("roleid", roleid);
+			paramMap.put("permissionids", permissionids);
+			
+			roleService.insertRolePermission(paramMap);
+			
+			result.setSuccess(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.setSuccess(false);
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping("/assign")
+	public String assign() {
+		
+		return "role/assign"; // 转到 jsp
+	}
+	
+	
+	@ResponseBody
 	@RequestMapping("/deletes")
 	public Object deletes(Integer[] roleid) {
 		AJAXResult result = new AJAXResult();

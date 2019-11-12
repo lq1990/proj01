@@ -21,6 +21,24 @@ public class PermissionController {
 
 	@Autowired
 	private PermissionService permissionSeriveImpl;
+	
+	
+	@ResponseBody
+	@RequestMapping("/delete")
+	public Object delete(Permission perm) {
+		AJAXResult result = new AJAXResult();
+		
+		try {
+			permissionSeriveImpl.deletePermission(perm);
+			
+			result.setSuccess(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.setSuccess(false);
+		}
+		
+		return result;
+	}
 
 	@ResponseBody
 	@RequestMapping("/update")
@@ -76,6 +94,41 @@ public class PermissionController {
 	public String index() {
 
 		return "permission/index";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/loadAssignData")
+	public Object loadAssignData(Integer roleid) {
+		List<Permission> permissions = new ArrayList<Permission>();
+		List<Permission> ps = permissionSeriveImpl.queryAll();
+		
+		// 获取当前角色已经分配的许可信息
+		List<Integer> permissionids = permissionSeriveImpl.queryPermissionsByRoleid(roleid);
+		
+		Map<Integer, Permission> map = new HashMap<Integer, Permission>();
+		for (Permission p : ps) {
+			if (permissionids.contains(p.getId())) {
+				p.setChecked(true);
+			} else {
+				p.setChecked(false);
+			}
+			map.put(p.getId(), p);
+		}
+
+		for (Permission p : ps) {
+			Permission child = p;
+			if (child.getPid() == 0) {
+				// root
+				child.setOpen(true);
+				permissions.add(child);
+			} else {
+				Permission parent = map.get(child.getPid()); // 父节点
+				parent.getChildren().add(child);
+			}
+		}
+		
+		
+		return permissions;
 	}
 
 	@ResponseBody

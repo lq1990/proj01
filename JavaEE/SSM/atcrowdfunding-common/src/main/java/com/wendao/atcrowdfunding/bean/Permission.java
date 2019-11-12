@@ -9,9 +9,20 @@ public class Permission {
 	private Integer pid;
 	private String url;
 	private String icon;
-	private boolean open; // 默认是否打开菜单
+	private boolean open = true; // 默认是否打开菜单
 	private List<Permission> children = new ArrayList<Permission>();
+	private boolean checked = false;
 	
+
+	public boolean isChecked() {
+		return checked;
+	}
+
+
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
+
 
 	public Permission() {
 		// TODO Auto-generated constructor stub

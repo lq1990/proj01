@@ -29,6 +29,11 @@ public interface RoleDao {
 	void deleteRoleById(Integer id);
 
 	void deleteRoles(Map<String, Object> map);
+
+	
+	void insertRolePermission(Map<String, Object> paramMap);
+
+	void deleteRolePermissions(Map<String, Object> paramMap);
 	
 	
 }

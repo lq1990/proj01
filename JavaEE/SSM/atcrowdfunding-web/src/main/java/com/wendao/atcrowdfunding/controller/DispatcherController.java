@@ -1,6 +1,11 @@
 package com.wendao.atcrowdfunding.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wendao.atcrowdfunding.bean.AJAXResult;
+import com.wendao.atcrowdfunding.bean.Permission;
 import com.wendao.atcrowdfunding.bean.User;
+import com.wendao.atcrowdfunding.service.PermissionService;
 import com.wendao.atcrowdfunding.service.UserService;
 
 /**
@@ -22,6 +29,9 @@ import com.wendao.atcrowdfunding.service.UserService;
  */
 @Controller
 public class DispatcherController {
+	
+	@Autowired
+	private PermissionService permissionServiceImpl;
 
 	@Autowired
 	private UserService userService;
@@ -34,8 +44,19 @@ public class DispatcherController {
 	@RequestMapping("/login")
 	public String login() {
 
-		return "login";
+		return "login"; // springmvc配置文件中配置了 视图解析器，所以直接写即可
+		//  name="prefix" value="/WEB-INF/jsp/"
 	}
+	
+	
+	
+	@RequestMapping("/error")
+	public String error() {
+		
+		return "error";
+	}
+	
+	
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
@@ -106,6 +127,36 @@ public class DispatcherController {
 		// 3. 判断用户信息是否存在
 		if (dbUser != null) {
 			session.setAttribute("loginUser", dbUser);
+			
+			// 获取用户权限信息
+			List<Permission> perms = permissionServiceImpl.queryPermissionsByUser(dbUser);
+			
+			Map<Integer, Permission> pMap = new HashMap<Integer, Permission>();
+			Permission root = null;
+			
+			Set<String> uriSet = new HashSet<String>();
+			
+			for (Permission permission : perms) {
+				pMap.put(permission.getId(), permission);
+				if (permission.getUrl() != null && !"".equals(permission.getUrl())) {
+					uriSet.add(session.getServletContext().getContextPath()
+							+ permission.getUrl());
+				}
+			}
+			
+			session.setAttribute("authUriSet", uriSet);
+			
+			for (Permission permission : perms) {
+				Permission child = permission;
+				if (child.getPid() == 0) {
+					root = child;
+				} else {
+					Permission parent = pMap.get(child.getPid());
+					parent.getChildren().add(child);
+				}
+			}
+			
+			session.setAttribute("root", root);
 			result.setSuccess(true);
 			
 		} else {

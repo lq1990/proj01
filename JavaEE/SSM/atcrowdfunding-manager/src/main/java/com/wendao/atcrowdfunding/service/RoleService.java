@@ -22,5 +22,7 @@ public interface RoleService {
 	public void deleteRoleById(Integer id);
 
 	public void deleteRoles(Map<String, Object> map);
+
+	public void insertRolePermission(Map<String, Object> paramMap);
 	
 }
