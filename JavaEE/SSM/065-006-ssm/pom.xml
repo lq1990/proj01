@@ -22,7 +22,7 @@
 		<tomcat-version>2.2</tomcat-version>
 		<mybatis-paginator-version>1.2.15</mybatis-paginator-version>
 		<pagehelper-version>4.1.6</pagehelper-version>
-		<commons-fileupload-version>1.3.1</commons-fileupload-version>
+		<commons-fileupload-version>1.3.3</commons-fileupload-version>
 		<commons-net-version>3.3</commons-net-version>
 		<httpclient-version>4.5.2</httpclient-version>
 		<jedis-version>2.8.1</jedis-version>
