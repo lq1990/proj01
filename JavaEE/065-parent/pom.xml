@@ -9,7 +9,7 @@
 	
 	<!-- 可以借用属性，对版本统一管理 -->
 	<properties>
-		<springVersion>4.1.6.RELEASE</springVersion>
+		<springVersion>5.2.20.RELEASE</springVersion>
 	</properties>
 	
 
